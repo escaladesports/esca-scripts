@@ -43,6 +43,35 @@ export default function(options){
 		config.externals = [nodeExternals()]
 	}
 
+	if(options.browser){
+		plugins.push(
+			new webpack.optimize.ModuleConcatenationPlugin(),
+			new webpack.optimize.OccurrenceOrderPlugin(),
+			new webpack.LoaderOptionsPlugin({
+				minimize: true,
+				debug: false,
+			})
+		)
+		config.module = {
+			rules: [{
+				test: /\.js?$/,
+				use: [{
+					loader: 'babel-loader',
+					options: {
+						presets: [
+							'es2015',
+							'stage-3',
+						],
+						plugins: [
+							'transform-runtime'
+						]
+					},
+				}],
+				include: path.join(process.cwd(), '/'),
+			}]
+		}
+	}
+
 	if(!options.analyze){
 		config.module = {
 			rules: [{
