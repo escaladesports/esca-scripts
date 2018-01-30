@@ -8,14 +8,8 @@ export default async function(options = {}) {
 		...options
 	}
 	const webpackConfig = {
-		...defaultWebpackConfig(options.env),
+		...defaultWebpackConfig(options),
 		...options.webpackConfig
 	}
-	try {
-		await webpack(webpackConfig)
-	}
-	catch(err){
-		console.error(err)
-		process.exit(1)
-	}
+	let res = await webpack(webpackConfig)
 }

@@ -4,9 +4,11 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
 import nodeExternals from 'webpack-node-externals'
 
-export default function(env){
+export default function(options = {}){
 
-	env = env || process.env.NODE_ENV
+	console.log(options)
+
+	const env = options.env || process.env.NODE_ENV
 	const plugins = []
 	let devtool = false
 
@@ -29,6 +31,16 @@ export default function(env){
 	if (env === 'development') {
 		plugins.push(new webpack.HotModuleReplacementPlugin())
 		devtool = 'eval'
+	}
+
+	if(options.banner){
+		plugins.push(new webpack.BannerPlugin(options.banner))
+	}
+	if (options.cli) {
+		plugins.push(new webpack.BannerPlugin({
+			banner: '#!/usr/bin/env node',
+			raw: true
+		}))
 	}
 
 	return {

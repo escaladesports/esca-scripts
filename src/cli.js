@@ -1,4 +1,3 @@
-
 import meow from 'meow'
 import path from 'path'
 
@@ -21,11 +20,19 @@ const cli = meow(`
 		--javascript   Set for a JS-only module
 		--mobx         Set if including MobX in your React or Gatsby project
 		--gatsby       Set for a Gatsby project
+		--cli          Set for a CLI project
+		--banner			Set a banner in the output
 `, {
 	flags: {
 		javascript: {
 			type: 'boolean'
-		}
+		},
+		banner: {
+			type: 'string'
+		},
+		cli: {
+			type: 'boolean'
+		},
 	}
 })
 
@@ -42,9 +49,15 @@ output = {
 	filename: output.base
 }
 
+let webpackConfig = {
+	entry: input,
+	output: output
+}
+
 build({
 	webpackConfig: {
 		entry: input,
 		output: output
-	}
+	},
+	...cli.flags
 })
