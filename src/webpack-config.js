@@ -41,14 +41,7 @@ export default function(options){
 	return {
 		devtool: devtool,
 		target: 'node',
-		externals: [nodeExternals()],
-		entry: [
-			'./src/index.js'
-		],
-		output: {
-			path: path.join(process.cwd(), '../dist'),
-			filename: 'index.js',
-		},
+		externals: [ nodeExternals() ],
 		plugins: plugins,
 		resolve: {
 			extensions: ['.js', '.jsx', '.json']
