@@ -1,7 +1,7 @@
 import meow from 'meow'
 import path from 'path'
+import webpack from 'webpack'
 
-import webpack from './webpack-promise'
 import webpackConfig from './webpack-config'
 
 const cli = meow(`
@@ -54,4 +54,9 @@ webpack({
 	...webpackConfig(cli.flags),
 	entry: input,
 	output: output
+}, err => {
+	if(err){
+		console.error(err)
+		process.exit(1)
+	}
 })
