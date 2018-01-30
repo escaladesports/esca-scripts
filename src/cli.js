@@ -18,16 +18,12 @@ const cli = meow(`
 
 	Project Options
 		--react        Set for a React component
-		--javascript   Set for a JS-only module
 		--mobx         Set if including MobX in your React or Gatsby project
 		--gatsby       Set for a Gatsby project
 		--cli          Set for a CLI project
 		--banner			Set a banner in the output
 `, {
 	flags: {
-		javascript: {
-			type: 'boolean'
-		},
 		banner: {
 			type: 'string'
 		},
@@ -42,7 +38,17 @@ const cli = meow(`
 })
 
 let input = cli.flags.input || './src/index.js'
-let output = cli.flags.output || './dist/index.js'
+let output = cli.flags.output
+if(!output){
+	output = input.split('/')
+	for(let i = output.length; i--;){
+		if(output[i] === 'src'){
+			output[i] = 'dist'
+			break
+		}
+	}
+	output = output.join('/')
+}
 output = path.join(process.cwd(), output)
 output = path.parse(output)
 output = {
