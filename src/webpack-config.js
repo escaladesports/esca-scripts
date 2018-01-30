@@ -43,7 +43,8 @@ export default function(options){
 		config.externals = [nodeExternals()]
 	}
 
-	if(options.browser){
+	if (options.browser) {
+		config.devtool = 'eval'
 		plugins.push(
 			new webpack.optimize.ModuleConcatenationPlugin(),
 			new webpack.optimize.OccurrenceOrderPlugin(),
