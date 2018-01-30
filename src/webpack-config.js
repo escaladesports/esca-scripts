@@ -4,7 +4,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
 import nodeExternals from 'webpack-node-externals'
 
-export default function(options = {}){
+export default function(options){
 
 	const env = options.env || process.env.NODE_ENV
 	const plugins = []
@@ -13,12 +13,12 @@ export default function(options = {}){
 	console.log(`Webpack building in ${env} environment...`)
 
 	if (env === 'production' || env === 'analyze') {
-		plugins.push(
-			new webpack.DefinePlugin({
-				'process.env.NODE_ENV': JSON.stringify('production')
-			}),
-			new UglifyJsPlugin(),
-		)
+		plugins.push(new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify('production')
+		}))
+		if(options.minify){
+			plugins.push(new UglifyJsPlugin())
+		}
 	}
 	if (env === 'analyze') {
 		plugins.push(new BundleAnalyzerPlugin({

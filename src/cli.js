@@ -13,15 +13,17 @@ const cli = meow(`
 		$ dev       Opens a development server
 
 	Options
-		--input, -i    Input path or file
-		--output, -o   Output path or file
+		--input    Input path or file
+		           Default: ./src/index.js
+		--output   Output path or file
+		           Default: [src path]/dist/[src name]
+		--minify   Minifies JavaScript, default: true
 
 	Project Options
 		--react        Set for a React component
 		--mobx         Set if including MobX in your React or Gatsby project
 		--gatsby       Set for a Gatsby project
 		--cli          Set for a CLI project
-		--banner			Set a banner in the output
 `, {
 	flags: {
 		banner: {
@@ -33,6 +35,10 @@ const cli = meow(`
 		env: {
 			type: 'string',
 			default: 'production'
+		},
+		minify: {
+			type: 'boolean',
+			default: true
 		}
 	}
 })
