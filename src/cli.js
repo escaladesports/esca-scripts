@@ -24,8 +24,8 @@ const cli = meow(`
 
 	Project Options
 		--react        Set for a React component
-		--mobx         Set if including MobX in your React or Gatsby project
 		--gatsby       Set for a Gatsby project
+		--mobx         Set if including MobX in your React or Gatsby project
 		--cli          Set for a CLI project
 `, {
 	flags: {

@@ -15,8 +15,6 @@ export default function(options){
 
 	const env = options.env || process.env.NODE_ENV
 
-	console.log(`Webpack building in ${env} environment...`)
-
 	if (env === 'production') {
 		plugins.push(new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production')
