@@ -1,7 +1,8 @@
 import meow from 'meow'
 import path from 'path'
 
-import build from './build'
+import webpack from './webpack-promise'
+import webpackConfig from './webpack-config'
 
 const cli = meow(`
 	Usage
@@ -33,12 +34,12 @@ const cli = meow(`
 		cli: {
 			type: 'boolean'
 		},
+		env: {
+			type: 'string',
+			default: 'production'
+		}
 	}
 })
-
-console.log('CWD:', process.cwd())
-console.log('INPUT:', cli.input)
-console.log('FLAGS:', cli.flags)
 
 let input = cli.flags.input || './src/index.js'
 let output = cli.flags.output || './dist/index.js'
@@ -49,15 +50,8 @@ output = {
 	filename: output.base
 }
 
-let webpackConfig = {
+webpack({
+	...webpackConfig(cli.flags),
 	entry: input,
 	output: output
-}
-
-build({
-	webpackConfig: {
-		entry: input,
-		output: output
-	},
-	...cli.flags
 })

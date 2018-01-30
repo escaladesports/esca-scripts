@@ -6,8 +6,6 @@ import nodeExternals from 'webpack-node-externals'
 
 export default function(options = {}){
 
-	console.log(options)
-
 	const env = options.env || process.env.NODE_ENV
 	const plugins = []
 	let devtool = false
@@ -33,9 +31,6 @@ export default function(options = {}){
 		devtool = 'eval'
 	}
 
-	if(options.banner){
-		plugins.push(new webpack.BannerPlugin(options.banner))
-	}
 	if (options.cli) {
 		plugins.push(new webpack.BannerPlugin({
 			banner: '#!/usr/bin/env node',

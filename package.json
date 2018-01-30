@@ -14,9 +14,7 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=1 webpack -p",
     "help": "babel-node src/cli --help",
-    "invoke": "esca-scripts",
     "build": "babel-node src/cli build --javascript --input './src/cli.js' --output './dist/cli.js' --cli",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --open --open-page \"/dev\"",
     "prepublishOnly": "npm run test && npm run build",
     "serve": "cd dist-dev && static-server --open",
     "test": "npm run build && mocha --require babel-core/register"
