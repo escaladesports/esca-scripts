@@ -2,10 +2,11 @@ import path from 'path'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import nodeExternals from 'webpack-node-externals'
 
 export default function(env){
 
-	const env = env || process.env.NODE_ENV
+	env = env || process.env.NODE_ENV
 	const plugins = []
 	let devtool = false
 
@@ -32,11 +33,13 @@ export default function(env){
 
 	return {
 		devtool: devtool,
+		target: 'node',
+		externals: [nodeExternals()],
 		entry: [
 			'./src/index.js'
 		],
 		output: {
-			path: path.join(__dirname, '../dist'),
+			path: path.join(process.cwd(), '../dist'),
 			filename: 'index.js',
 		},
 		plugins: plugins,
@@ -55,7 +58,7 @@ export default function(env){
 						]
 					},
 				}],
-				include: path.join(__dirname, '/')
+				include: path.join(process.cwd(), '/'),
 			}]
 		},
 	}

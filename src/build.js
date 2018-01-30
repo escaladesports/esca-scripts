@@ -1,21 +1,21 @@
 import webpack from './webpack-promise'
 import defaultWebpackConfig from './webpack-config'
 
-async function build(options = {}) {
+export default async function(options = {}) {
 	options = {
 		env: 'production',
+		webpackConfig: {},
 		...options
 	}
 	const webpackConfig = {
-		...defaultWebpackConfig(options.env)
+		...defaultWebpackConfig(options.env),
+		...options.webpackConfig
 	}
 	try {
-		await webpack(config)
+		await webpack(webpackConfig)
 	}
 	catch(err){
 		console.error(err)
 		process.exit(1)
 	}
 }
-
-build()
