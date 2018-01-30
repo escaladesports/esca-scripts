@@ -38,9 +38,12 @@ export default function(options){
 		}))
 	}
 
-	if(!options.analyze){
+	if (!options.analyze && !options.browser) {
 		config.target = 'node'
 		config.externals = [nodeExternals()]
+	}
+
+	if(!options.analyze){
 		config.module = {
 			rules: [{
 				test: /\.js?$/,

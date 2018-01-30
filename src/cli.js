@@ -23,6 +23,7 @@ const cli = meow(`
 		           Default: ./dist
 
 	Project Options
+		--browser      Set for a browser project
 		--react        Set for a React component
 		--gatsby       Set for a Gatsby project
 		--mobx         Set if including MobX in your React or Gatsby project
@@ -46,6 +47,9 @@ const cli = meow(`
 		dir: {
 			type: 'string',
 			default: './dist'
+		},
+		browser: {
+			type: 'boolean'
 		}
 	}
 })
