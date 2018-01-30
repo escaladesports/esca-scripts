@@ -15,7 +15,13 @@ const cli = meow(`
 		$ --mobx		Set if including MobX in your React or Gatsby project
 		$ --gatsby	Set for a Gatsby project
 `, {
-
+	flags: {
+		js: {
+			type: 'boolean',
+			alias: 'j'
+		}
+	}
 })
 
-console.log('CLI:', cli)
+console.log('INPUT:', cli.input)
+console.log('FLAGS:', cli.flags)
