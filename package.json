@@ -1,10 +1,7 @@
 {
   "name": "esca-scripts",
   "version": "0.0.0",
-  "main": "dist/index.js",
-  "browser": "dist/index.js",
-  "module": "dist/index.mjs",
-  "jsnext:main": "dist/index.mjs",
+  "main": "dist/cli.js",
   "author": "Kennedy Rose <krose@escaladesports.com>",
   "repository": {
     "type": "git",
@@ -12,7 +9,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "analyze": "babel-node src/cli analyze --input './src/cli.js",
+    "analyze": "babel-node src/cli analyze --input './src/cli.js'",
     "build": "babel-node src/cli build --input './src/cli.js' --cli",
     "help": "babel-node src/cli --help",
     "prepublishOnly": "npm run test && npm run build",

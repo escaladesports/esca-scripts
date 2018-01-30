@@ -22,6 +22,10 @@ export default function (cli) {
 		filename: output.base
 	}
 
+	if(cli.input[0] === 'analyze'){
+		cli.flags.analyze = true
+	}
+
 	webpack({
 		...webpackConfig(cli.flags),
 		entry: input,

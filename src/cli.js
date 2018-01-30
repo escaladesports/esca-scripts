@@ -1,5 +1,5 @@
 import meow from 'meow'
-import run from './run'
+import webpack from './webpack'
 import serve from './serve'
 
 const cli = meow(`
@@ -10,6 +10,7 @@ const cli = meow(`
 		$ build     Creates a distribution build
 		$ dev       Opens a development server
 		$ serve     Serves static content
+		$ analyze   Analyze filesizes
 
 	Options
 		--input    Input path or file
@@ -49,13 +50,10 @@ const cli = meow(`
 	}
 })
 
-const input = cli.input[0]
-
 switch(cli.input[0]){
-	case 'build':
-		run(cli)
-		break
 	case 'serve':
 		serve(cli.flags)
 		break
+	default:
+		webpack(cli)
 }

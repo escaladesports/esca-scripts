@@ -5,14 +5,19 @@ import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
 import nodeExternals from 'webpack-node-externals'
 
 export default function(options){
+	const plugins = []
+	const config = {
+		plugins: plugins,
+		resolve: {
+			extensions: ['.js', '.jsx', '.json']
+		}
+	}
 
 	const env = options.env || process.env.NODE_ENV
-	const plugins = []
-	let devtool = false
 
 	console.log(`Webpack building in ${env} environment...`)
 
-	if (env === 'production' || env === 'analyze') {
+	if (env === 'production') {
 		plugins.push(new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production')
 		}))
@@ -20,17 +25,14 @@ export default function(options){
 			plugins.push(new UglifyJsPlugin())
 		}
 	}
-	if (env === 'analyze') {
-		plugins.push(new BundleAnalyzerPlugin({
-			analyzerMode: 'server',
-			openAnalyzer: true
-		}))
-	}
 	if (env === 'development') {
 		plugins.push(new webpack.HotModuleReplacementPlugin())
-		devtool = 'eval'
+		config.devtool = 'eval'
 	}
 
+	if (options.analyze) {
+		plugins.push(new BundleAnalyzerPlugin())
+	}
 	if (options.cli) {
 		plugins.push(new webpack.BannerPlugin({
 			banner: '#!/usr/bin/env node',
@@ -38,15 +40,10 @@ export default function(options){
 		}))
 	}
 
-	return {
-		devtool: devtool,
-		target: 'node',
-		externals: [ nodeExternals() ],
-		plugins: plugins,
-		resolve: {
-			extensions: ['.js', '.jsx', '.json']
-		},
-		module: {
+	if(!options.analyze){
+		config.target = 'node'
+		config.externals = [nodeExternals()]
+		config.module = {
 			rules: [{
 				test: /\.js?$/,
 				use: [{
@@ -60,7 +57,8 @@ export default function(options){
 				}],
 				include: path.join(process.cwd(), '/'),
 			}]
-		},
+		}
 	}
 
+	return config
 }
