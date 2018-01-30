@@ -1,5 +1,6 @@
 import meow from 'meow'
 import run from './run'
+import serve from './serve'
 
 const cli = meow(`
 	Usage
@@ -8,6 +9,7 @@ const cli = meow(`
 	Commands
 		$ build     Creates a distribution build
 		$ dev       Opens a development server
+		$ serve     Serves static content
 
 	Options
 		--input    Input path or file
@@ -16,6 +18,8 @@ const cli = meow(`
 		           Default: [src path]/dist/[src name]
 		--minify   Minifies JavaScript, default: true
 		--env      Change environment variable, default: production
+		--dir      Directory to serve if serving static content
+		           Default: ./dist
 
 	Project Options
 		--react        Set for a React component
@@ -37,8 +41,21 @@ const cli = meow(`
 		minify: {
 			type: 'boolean',
 			default: true
+		},
+		dir: {
+			type: 'string',
+			default: './dist'
 		}
 	}
 })
 
-run(cli)
+const input = cli.input[0]
+
+switch(cli.input[0]){
+	case 'build':
+		run(cli)
+		break
+	case 'serve':
+		serve(cli.flags)
+		break
+}

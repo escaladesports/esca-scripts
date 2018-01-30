@@ -13,10 +13,10 @@
   "license": "MIT",
   "scripts": {
     "analyze": "babel-node src/cli analyze --input './src/cli.js",
-    "help": "babel-node src/cli --help",
     "build": "babel-node src/cli build --input './src/cli.js' --cli",
+    "help": "babel-node src/cli --help",
     "prepublishOnly": "npm run test && npm run build",
-    "serve": "cd dist-dev && static-server --open",
+    "serve": "babel-node src/cli serve",
     "test": "npm run build && mocha --require babel-core/register"
   },
   "bin": {
@@ -45,6 +45,7 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
+    "exeq": "^3.0.0",
     "meow": "^4.0.0"
   }
 }
