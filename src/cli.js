@@ -18,6 +18,7 @@ const cli = meow(`
 		--output   Output path or file
 		           Default: [src path]/dist/[src name]
 		--minify   Minifies JavaScript, default: true
+		--env      Change environment variable, default: production
 
 	Project Options
 		--react        Set for a React component
