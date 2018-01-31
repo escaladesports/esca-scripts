@@ -63,6 +63,9 @@ switch(cli.input[0]){
 	case 'test':
 		test()
 		break
+	case 'dev':
+		webpack(cli, true)
+		break
 	default:
 		webpack(cli)
 }

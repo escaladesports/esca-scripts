@@ -3,6 +3,8 @@ import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
 import nodeExternals from 'webpack-node-externals'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import ReloadHtmlPlugin from 'reload-html-webpack-plugin'
 
 export default function(options){
 	const plugins = []
@@ -25,6 +27,11 @@ export default function(options){
 					},
 				}],
 				include: path.join(process.cwd(), '/'),
+			}, {
+				test: /\.html?$/,
+				use: {
+					loader: 'html-loader'
+				}
 			}]
 		}
 	}
@@ -39,9 +46,24 @@ export default function(options){
 			plugins.push(new UglifyJsPlugin())
 		}
 	}
-	if (env === 'development') {
-		plugins.push(new webpack.HotModuleReplacementPlugin())
+	if (env === 'development' || options.dev) {
+		console.log('Development environmen building...')
+		plugins.push(
+			new webpack.HotModuleReplacementPlugin(),
+			new HtmlWebpackPlugin({
+				template: options.dir + '/index.html'
+			}),
+			new ReloadHtmlPlugin()
+		)
 		config.devtool = 'eval'
+		options.devServer = {
+			hot: true,
+			contentBase: 'dev',
+			publicPath: '/public/',
+			stats: {
+				colors: true
+			},
+		}
 	}
 
 	// Option specific plugins
