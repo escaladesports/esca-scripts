@@ -78,6 +78,7 @@ export default function(options){
 		config.module = {
 			rules: [{
 				test: /\.js?$/,
+				exclude: /node_modules/,
 				use: [{
 					loader: 'babel-loader',
 					options: {
