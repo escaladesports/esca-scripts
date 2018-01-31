@@ -14,6 +14,7 @@
     "help": "babel-node src/cli --help",
     "prepublishOnly": "npm run test && npm run build",
     "serve": "babel-node src/cli serve",
+    "test-bak": "mocha --require babel-core/register",
     "test": "npm run build && node dist/cli test"
   },
   "bin": {
@@ -47,7 +48,6 @@
     "webpack-bundle-analyzer": "^2.9.1"
   },
   "dependencies": {
-    "exeq": "^3.0.0",
     "meow": "^4.0.0",
     "webpack-node-externals": "^1.6.0"
   }

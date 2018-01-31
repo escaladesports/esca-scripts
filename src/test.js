@@ -1,5 +1,8 @@
-import exeq from 'exeq'
+import { spawn } from 'child_process'
 
 export default function(){
-	exeq(`mocha --require babel-core/register`)
+	spawn('mocha --require babel-core/register', [], {
+		shell: true,
+		stdio: 'inherit',
+	})
 }
