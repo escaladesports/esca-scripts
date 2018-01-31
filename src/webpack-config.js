@@ -45,7 +45,6 @@ export default function(options){
 
 	if (options.browser) {
 		console.log('Building for browser...')
-		config.devtool = 'eval'
 		plugins.push(
 			new webpack.optimize.ModuleConcatenationPlugin(),
 			new webpack.optimize.OccurrenceOrderPlugin(),
