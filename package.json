@@ -14,7 +14,7 @@
     "help": "babel-node src/cli --help",
     "prepublishOnly": "npm run test && npm run build",
     "serve": "babel-node src/cli serve",
-    "test": "npm run build && mocha --require babel-core/register"
+    "test": "npm run build && node dist/cli test"
   },
   "bin": {
     "esca-scripts": "dist/cli.js"
@@ -22,6 +22,12 @@
   "pre-commit": [
     "test"
   ],
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-3"
+    ]
+	},
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

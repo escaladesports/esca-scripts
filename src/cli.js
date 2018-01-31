@@ -1,6 +1,7 @@
 import meow from 'meow'
 import webpack from './webpack'
 import serve from './serve'
+import test from './test'
 
 const cli = meow(`
 	Usage
@@ -11,6 +12,7 @@ const cli = meow(`
 		$ dev       Opens a development server
 		$ serve     Serves static content
 		$ analyze   Analyze filesizes
+		$ test      Runs mocha tests
 
 	Options
 		--input    Input path or file
@@ -57,6 +59,9 @@ const cli = meow(`
 switch(cli.input[0]){
 	case 'serve':
 		serve(cli.flags)
+		break
+	case 'test':
+		test()
 		break
 	default:
 		webpack(cli)
