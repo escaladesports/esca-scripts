@@ -11,7 +11,7 @@
   "scripts": {
     "analyze": "babel-node src/cli analyze --input './src/cli.js'",
     "build": "babel-node src/cli build --input './src/cli.js' --cli",
-    "dev": "babel-node src/cli dev --dir dev --input ./dev/script.js",
+    "dev": "babel-node src/cli dev ---input './dev/script.js, ./dev/index.html'",
     "help": "babel-node src/cli --help",
     "prepublishOnly": "npm run test && npm run build",
     "serve": "babel-node src/cli serve",

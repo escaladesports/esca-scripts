@@ -32,7 +32,7 @@ export default function (cli, dev) {
 	}
 
 	const config = {
-		...webpackConfig(cli.flags),
+		...webpackConfig(cli.flags, input),
 		entry: input,
 		output: output
 	}

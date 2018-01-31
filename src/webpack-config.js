@@ -6,7 +6,7 @@ import nodeExternals from 'webpack-node-externals'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ReloadHtmlPlugin from 'reload-html-webpack-plugin'
 
-export default function(options){
+export default function(options, input){
 	const plugins = []
 	const config = {
 		plugins: plugins,
@@ -48,21 +48,20 @@ export default function(options){
 	}
 	if (env === 'development' || options.dev) {
 		console.log('Development environmen building...')
-		plugins.push(
-			new webpack.HotModuleReplacementPlugin(),
-			new HtmlWebpackPlugin({
-				template: options.dir + '/index.html'
-			}),
-			new ReloadHtmlPlugin()
-		)
+		plugins.push(new webpack.HotModuleReplacementPlugin())
+		input.forEach(input => {
+			if (path.extname(input) === '.html') {
+				plugins.push(new HtmlWebpackPlugin({
+					template: input
+				}))
+			}
+		})
+		plugins.push(new ReloadHtmlPlugin())
 		config.devtool = 'eval'
 		options.devServer = {
 			hot: true,
 			contentBase: 'dev',
 			publicPath: '/public/',
-			stats: {
-				colors: true
-			},
 		}
 	}
 
