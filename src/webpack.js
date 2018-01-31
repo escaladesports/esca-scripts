@@ -41,6 +41,6 @@ export default function (cli, dev) {
 		build(config)
 	}
 	else{
-		devServer(config)
+		devServer(config, cli.flags)
 	}
 }

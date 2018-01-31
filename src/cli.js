@@ -23,6 +23,7 @@ const cli = meow(`
 		--env      Change environment variable, default: production
 		--dir      Directory to serve if serving static content
 		           Default: ./dist
+		--open     Open development site in browser, default: true
 
 	Project Options
 		--browser      Set for a browser project
@@ -52,6 +53,10 @@ const cli = meow(`
 		},
 		browser: {
 			type: 'boolean'
+		},
+		open: {
+			type: 'boolean',
+			default: true
 		}
 	}
 })

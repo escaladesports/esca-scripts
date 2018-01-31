@@ -47,7 +47,7 @@ export default function(options, input){
 		}
 	}
 	if (env === 'development' || options.dev) {
-		console.log('Development environmen building...')
+		console.log('Building development environment...')
 		plugins.push(new webpack.HotModuleReplacementPlugin())
 		input.forEach(input => {
 			if (path.extname(input) === '.html') {
@@ -78,7 +78,7 @@ export default function(options, input){
 	}
 	if (!options.analyze && !options.browser) {
 		config.target = 'node'
-		config.externals = [nodeExternals()]
+		config.externals = [ nodeExternals() ]
 	}
 	if (options.browser) {
 		console.log('Building for browser...')
