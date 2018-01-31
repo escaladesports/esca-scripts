@@ -2,7 +2,8 @@ import path from 'path'
 import webpackConfig from './webpack-config'
 import build from './build'
 import devServer from './dev'
-import { pathExists, copy } from 'fs-extra'
+import { pathExists, copy, outputJson } from 'fs-extra'
+import postcssConfig from './postcss.config'
 
 export default async function (cli, dev) {
 	let input = cli.flags.input || './src/index.js'
@@ -33,10 +34,9 @@ export default async function (cli, dev) {
 	}
 
 	if(cli.flags.react){
-		await copy(
-			path.join(__dirname, '../src/postcss.config.js'),
-			path.join(process.cwd(), '/postcss.config.js')
-		)
+		if (!await pathExists('.postcssrc')) {
+			await outputJson('.postcssrc', postcssConfig, { spaces: '\t' })
+		}
 	}
 
 	const config = {

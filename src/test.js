@@ -3,7 +3,9 @@ import { babel } from '../package.json'
 import { pathExists, outputJson, remove } from 'fs-extra'
 
 export default async function(){
-	await outputJson('.babelrc', babel)
+	if (!await pathExists('.babelrc')) {
+		await outputJson('.babelrc', babel, { spaces: '\t' })
+	}
 	try {
 		await spawn('mocha --require babel-core/register', [], {
 			shell: true,
