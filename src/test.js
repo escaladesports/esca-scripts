@@ -7,10 +7,13 @@ export default async function(){
 	if(!rcExists){
 		await outputJson('.babelrc', babel)
 	}
-	await spawn('mocha --require babel-core/register', [], {
-		shell: true,
-		stdio: 'inherit',
-	})
+	try {
+		await spawn('mocha --require babel-core/register', [], {
+			shell: true,
+			stdio: 'inherit',
+		})
+	}
+	catch(err){}
 	if(!rcExists){
 		await remove('.babelrc')
 	}
