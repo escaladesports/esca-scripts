@@ -1,6 +1,6 @@
 {
   "name": "esca-scripts",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "main": "dist/cli.js",
   "author": "Kennedy Rose <krose@escaladesports.com>",
   "repository": {
@@ -27,7 +27,7 @@
       "es2015",
       "stage-3"
     ]
-	},
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
