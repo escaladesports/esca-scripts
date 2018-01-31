@@ -4,7 +4,14 @@ import { render } from 'react-dom'
 class Component extends React.Component {
 	render() {
 		return (
-			<div>This is a React component!</div>
+			<div>
+				This is a React component!
+				<style jsx>{`
+					div{
+						color: red;
+					}
+				`}</style>
+			</div>
 		)
 	}
 }

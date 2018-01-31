@@ -106,9 +106,16 @@ export default function(options, input){
 			'stage-3'
 		)
 		babelPlugins.length = 0
-		babelPlugins.push(["transform-react-remove-prop-types", {
-			"mode": "wrap"
-		}])
+		babelPlugins.push(
+			["styled-jsx/babel", {
+				"plugins": [
+					"styled-jsx-plugin-postcss"
+				]
+			}],
+			["transform-react-remove-prop-types", {
+				"mode": "wrap"
+			}]
+		)
 	}
 
 	return config

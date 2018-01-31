@@ -2,8 +2,9 @@ import path from 'path'
 import webpackConfig from './webpack-config'
 import build from './build'
 import devServer from './dev'
+import { pathExists, copy } from 'fs-extra'
 
-export default function (cli, dev) {
+export default async function (cli, dev) {
 	let input = cli.flags.input || './src/index.js'
 	input = input.split(',').map(str => str.trim())
 	let output = cli.flags.output
@@ -29,6 +30,13 @@ export default function (cli, dev) {
 	}
 	else if(cli.input[0] === 'dev'){
 		cli.flags.dev = true
+	}
+
+	if(cli.flags.react){
+		await copy(
+			path.join(__dirname, '../src/postcss.config.js'),
+			path.join(process.cwd(), '/postcss.config.js')
+		)
 	}
 
 	const config = {

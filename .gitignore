@@ -19,6 +19,7 @@ docs/build/
 dist-*
 coverage/
 .eslintcache
+./postcss.config.js
 
 # Temporary
 temp
