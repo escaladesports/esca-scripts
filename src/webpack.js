@@ -26,15 +26,11 @@ export default function (cli) {
 		cli.flags.analyze = true
 	}
 
-	const config = {
+	webpack({
 		...webpackConfig(cli.flags),
 		entry: input,
 		output: output
-	}
-
-	console.log('Webpack config:', config)
-
-	webpack(config, err => {
+	}, err => {
 		if (err) {
 			console.error(err)
 			process.exit(1)
