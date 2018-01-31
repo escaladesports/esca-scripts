@@ -24,6 +24,8 @@ const cli = meow(`
 		--dir      Directory to serve if serving static content
 		           Default: ./dist
 		--open     Open development site in browser, default: true
+		--port     Set to specify development site port
+		           If not set, the first open port found will be used
 
 	Project Options
 		--browser      Set for a browser project
@@ -57,6 +59,9 @@ const cli = meow(`
 		open: {
 			type: 'boolean',
 			default: true
+		},
+		port: {
+			type: 'string',
 		}
 	}
 })

@@ -12,12 +12,14 @@ export default async function (config, options) {
 		}
 	})
 
-	const port = await getPortPromise()
-	console.log(`Starting dev server on port ${port}...`)
-	server.listen(port, 'localhost', () => {
-		console.log(`Running dev server on port ${port}`)
+	if(!options.port){
+		options.port = await getPortPromise()
+	}
+	console.log(`Starting dev server on port ${options.port}...`)
+	server.listen(options.port, 'localhost', () => {
+		console.log(`Running dev server on port ${options.port}`)
 		if (options.open) {
-			opn(`http://localhost:${port}`)
+			opn(`http://localhost:${options.port}`)
 		}
 	})
 }
