@@ -8,6 +8,11 @@ import ReloadHtmlPlugin from 'reload-html-webpack-plugin'
 
 export default function(options, input){
 	const plugins = []
+	const babelPresets = [
+		'es2015',
+		'stage-3',
+	]
+	const babelPlugins = []
 	const config = {
 		plugins: plugins,
 		resolve: {
@@ -20,10 +25,8 @@ export default function(options, input){
 				use: [{
 					loader: 'babel-loader',
 					options: {
-						presets: [
-							'es2015',
-							'stage-3',
-						]
+						presets: babelPresets,
+						plugins: babelPlugins,
 					},
 				}],
 				include: path.join(process.cwd(), '/'),
@@ -36,9 +39,13 @@ export default function(options, input){
 		}
 	}
 
+
+
 	// Environment specific plugins
-	const env = options.env || process.env.NODE_ENV
+	let env = options.env || process.env.NODE_ENV
+	if(options.dev) env = 'development'
 	if (env === 'production') {
+		console.log('Building production environment...')
 		plugins.push(new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production')
 		}))
@@ -46,7 +53,7 @@ export default function(options, input){
 			plugins.push(new UglifyJsPlugin())
 		}
 	}
-	if (env === 'development' || options.dev) {
+	if (env === 'development') {
 		console.log('Building development environment...')
 		plugins.push(new webpack.HotModuleReplacementPlugin())
 		input.forEach(input => {
@@ -90,6 +97,18 @@ export default function(options, input){
 				debug: false,
 			})
 		)
+	}
+	if(options.react){
+		console.log('Building for React...')
+		babelPresets.length = 0
+		babelPresets.push(
+			'react',
+			'stage-3'
+		)
+		babelPlugins.length = 0
+		babelPlugins.push(["transform-react-remove-prop-types", {
+			"mode": "wrap"
+		}])
 	}
 
 	return config
