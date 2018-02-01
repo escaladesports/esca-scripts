@@ -7,6 +7,7 @@ import test from './test'
 import serverlessDeploy from './serverless-deploy'
 import serverlessTest from './serverless-test'
 import serverlessLogs from './serverless-logs'
+import serverlessDev from './serverless-dev'
 import getStage from './get-stage'
 
 const cli = meow(help, {
@@ -78,7 +79,12 @@ switch(cli.input[0]){
 		}
 		break
 	case 'dev':
-		webpack(cli, true)
+		if(cli.flags.serverless){
+			serverlessDev(cli.flags)
+		}
+		else {
+			webpack(cli, true)
+		}
 		break
 	case 'deploy':
 		if(cli.flags.serverless){

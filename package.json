@@ -17,15 +17,11 @@
     "help": "babel-node src/cli --help",
     "prepublishOnly": "npm run test && npm run build",
     "serve": "babel-node src/cli serve --dir dev",
-    "test-bak": "mocha --require babel-core/register",
     "test": "npm run build && node dist/cli test"
   },
   "bin": {
     "esca-scripts": "dist/cli.js"
   },
-  "pre-commit": [
-    "test"
-  ],
   "babel": {
     "presets": [
       "es2015",
@@ -61,7 +57,6 @@
     "portfinder": "^1.0.13",
     "postcss-cssnext": "^3.1.0",
     "postcss-nested": "^3.0.0",
-    "pre-commit": "^1.2.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "reload-html-webpack-plugin": "^0.1.2",
