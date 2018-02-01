@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "analyze": "babel-node src/cli analyze --input './src/cli.js'",
-    "build": "babel-node src/cli build --input './src/cli.js' --cli --prompt",
+    "build": "babel-node src/cli build --input './src/cli.js' --cli",
     "build:react": "babel-node src/cli build ---input ./dev/react.js --output ./dist/react.js --react --minify false",
     "dev": "babel-node src/cli dev ---input './dev/script.js, ./dev/index.html'",
     "dev:react": "babel-node src/cli dev ---input './dev/react.js, ./dev/index.html' --react",
