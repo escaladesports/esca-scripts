@@ -20,11 +20,16 @@ export default `
 		           Default: ./dist
 		--open     Open development site in browser, default: true
 		--port     Set to specify development site port
-		           If not set, the first open port found will be used
+					  If not set, the first open port found will be used
+		--yn       Set to true to prompt y/n before CLI scripts
+					  Default: false
+		--stage    Sets the stage to be used for serverless
+		           Default: staging
 
 	Project Options
 		--browser      Set for a browser project
 		--react        Set for a React component
 		--gatsby       Set for a Gatsby project
 		--cli          Set for a CLI project
+		--serverless   Set for a serverless project
 `

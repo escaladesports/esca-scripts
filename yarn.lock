@@ -6620,3 +6620,7 @@ yargs@~3.10.0:
 yeast@0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
+
+yn-cli@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/yn-cli/-/yn-cli-1.0.0.tgz#f40b393a5b5237b24c7461894d2f9c8c8ff78664"

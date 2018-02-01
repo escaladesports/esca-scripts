@@ -40,7 +40,11 @@ const cli = meow(help, {
 			type: 'boolean'
 		},
 		stage: {
-			type: 'string'
+			type: 'string',
+			default: 'staging',
+		},
+		yn: {
+			type: 'boolean'
 		}
 	}
 })
@@ -57,7 +61,7 @@ switch(cli.input[0]){
 		break
 	case 'deploy':
 		if(cli.flags.serverless){
-			serverlessDeploy(cli.flags.stage)
+			serverlessDeploy(cli.flags)
 		}
 		break
 	default:
