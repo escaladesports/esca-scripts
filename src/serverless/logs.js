@@ -1,13 +1,11 @@
 import { readFile } from 'fs-extra'
 import { join } from 'path'
-import { load } from 'js-yaml'
 
 import spawn from '../spawn'
+import getConfig from './get-config'
 
 async function getFirstFunction(){
-	let config = await readFile(join(process.cwd(), '/serverless.yml'))
-	config = config.toString()
-	config = load(config)
+	let config = await getConfig()
 	return Object.keys(config.functions)[0]
 }
 

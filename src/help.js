@@ -10,21 +10,24 @@ export default `
 		$ test      Runs mocha tests
 
 	Options
-		--input    Input path or file
-		           Default: ./src/index.js
-		--output   Output path or file
-		           Default: [src path]/dist/[src name]
-		--minify   Minifies JavaScript, default: true
-		--env      Change environment variable, default: production
-		--dir      Directory to serve if serving static content
-		           Default: ./dist
-		--open     Open development site in browser, default: true
-		--port     Set to specify development site port
-					  If not set, the first open port found will be used
-		--yn       Set to true to prompt y/n before CLI scripts
-					  Default: false
-		--stage    Sets the stage to be used for serverless
-		           Default: staging
+		--input     Input path or file
+		            Default: ./src/index.js
+		--output    Output path or file
+		            Default: [src path]/dist/[src name]
+		--minify    Minifies JavaScript, default: true
+		--env       Change environment variable, default: production
+		--dir       Directory to serve if serving static content
+		            Default: ./dist
+		--open      Open development site in browser, default: true
+		--port      Set to specify development site port
+					   If not set, the first open port found will be used
+		--prompt    Set to true to prompt y/n before CLI scripts
+					   Default: false
+		--stage     Sets the stage to be used for serverless
+					   Default: staging
+		--start     Starting time for logs, default: [serverless default]
+		--function  Target serverless function
+						Default: [first function in serverless.yml]
 
 	Project Options
 		--browser      Set for a browser project

@@ -1,15 +1,17 @@
 import meow from 'meow'
 
+import pkg from '../package.json'
 import help from './help'
 import webpack from './webpack'
 import serve from './serve'
 import test from './test'
+import reset from './reset'
+import getStage from './serverless/get-stage'
 import serverlessDeploy from './serverless/deploy'
 import serverlessTest from './serverless/test'
 import serverlessLogs from './serverless/logs'
 import serverlessDev from './serverless/dev'
 import serverlessBuild from './serverless/build'
-import getStage from './get-stage'
 
 const cli = meow(help, {
 	flags: {
@@ -46,61 +48,49 @@ const cli = meow(help, {
 		},
 		stage: {
 			type: 'string',
-			default: 'staging',
+			default: 'staging'
 		},
 		prompt: {
 			type: 'boolean'
 		},
 		start: {
-			type: 'string',
+			type: 'string'
 		},
 		function: {
-			type: 'string',
-		},
-		start: {
 			type: 'string'
-		}
+		},
 	}
 })
 
-if(cli.flags.serverless){
-	cli.flags.stage = getStage(cli.flags.stage)
-}
+function operation() {
+	if (cli.flags.serverless) {
+		cli.flags.stage = getStage(cli.flags.stage)
+		switch (cli.input[0]) {
+			case 'serve':
+			case 'dev':
+				return serverlessDev(cli.flags)
+			case 'test':
+				return serverlessTest(cli.flags)
+			case 'deploy':
+				return serverlessDeploy(cli.flags)
+			case 'logs':
+				return serverlessLogs(cli.flags)
+			case 'build':
+				return serverlessBuild(cli.flags)
+		}
+	}
 
-switch(cli.input[0]){
-	case 'serve':
-		serve(cli.flags)
-		break
-	case 'test':
-		if(cli.flags.serverless){
-			serverlessTest(cli.flags)
-		}
-		else {
-			test(cli.flags)
-		}
-		break
-	case 'dev':
-		if(cli.flags.serverless){
-			serverlessDev(cli.flags)
-		}
-		else {
-			webpack(cli, true)
-		}
-		break
-	case 'deploy':
-		if(cli.flags.serverless){
-			serverlessDeploy(cli.flags)
-		}
-		break
-	case 'logs':
-		serverlessLogs(cli.flags)
-		break
-	case 'build':
-		if (cli.flags.serverless) {
-			serverlessBuild(cli.flags)
-		}
-		else {
-			webpack(cli)
-		}
-		break
+	switch (cli.input[0]) {
+		case 'serve':
+			return serve(cli.flags)
+		case 'test':
+			return test(cli.flags)
+		case 'dev':
+			return webpack(cli, true)
+		case 'build':
+			return webpack(cli)
+		case 'reset':
+			return reset(cli.flags)
+	}
 }
+operation()
