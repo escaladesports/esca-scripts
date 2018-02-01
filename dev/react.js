@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-class Component extends React.Component {
+export default class Component extends React.Component {
 	render() {
 		return (
 			<div>
@@ -16,7 +16,9 @@ class Component extends React.Component {
 	}
 }
 
+/*
 const container = document.createElement('div')
 render(<Component />, container)
 const body = document.querySelector('body')
 body.appendChild(container)
+*/
