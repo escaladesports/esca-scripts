@@ -1,9 +1,10 @@
-import path from 'path'
+import { join, parse } from 'path'
+import { pathExists, outputJson } from 'fs-extra'
+
 import webpackConfig from './webpack-config'
 import build from './build'
 import devServer from './dev'
-import { pathExists, copy, outputJson } from 'fs-extra'
-import postcssConfig from './postcss.config'
+import postcssConfig from './postcss-config'
 
 export default async function (cli, dev) {
 	let input = cli.flags.input || './src/index.js'
@@ -19,8 +20,8 @@ export default async function (cli, dev) {
 		}
 		output = output.join('/')
 	}
-	output = path.join(process.cwd(), output)
-	output = path.parse(output)
+	output = join(process.cwd(), output)
+	output = parse(output)
 	output = {
 		path: output.dir,
 		filename: output.base

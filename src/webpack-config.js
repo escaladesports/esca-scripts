@@ -1,4 +1,4 @@
-import path from 'path'
+import { extname, join } from 'path'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
@@ -29,7 +29,7 @@ export default function(options, input){
 						plugins: babelPlugins,
 					},
 				}],
-				include: path.join(process.cwd(), '/'),
+				include: join(process.cwd(), '/'),
 			}, {
 				test: /\.html?$/,
 				use: {
@@ -57,7 +57,7 @@ export default function(options, input){
 		console.log('Building development environment...')
 		plugins.push(new webpack.HotModuleReplacementPlugin())
 		input.forEach(input => {
-			if (path.extname(input) === '.html') {
+			if (extname(input) === '.html') {
 				plugins.push(new HtmlWebpackPlugin({
 					template: input
 				}))
