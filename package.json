@@ -15,7 +15,6 @@
     "dev": "babel-node src/cli dev ---input './dev/script.js, ./dev/index.html'",
     "dev:react": "babel-node src/cli dev ---input './dev/react.js, ./dev/index.html' --react",
     "help": "babel-node src/cli --help",
-    "prepublishOnly": "npm run test && npm run build",
     "reset": "babel-node src/cli reset",
     "serve": "babel-node src/cli serve --dir dev",
     "test": "npm run build && node dist/cli test"
