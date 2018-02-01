@@ -9,7 +9,6 @@ const defaultOptions = {
 export default async function (cmd, options = {}, noExit){
 	try{
 		if(typeof cmd === 'object') cmd = cmd.join(' && ')
-		if(options.prompt) cmd = `yn && ${cmd}`
 		const res = await spawn(cmd, defaultArgs, defaultOptions)
 		return res
 	}

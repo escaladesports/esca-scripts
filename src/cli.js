@@ -1,5 +1,6 @@
 import meow from 'meow'
 
+import prompt from './prompt'
 import pkg from '../package.json'
 import help from './help'
 import webpack from './webpack'
@@ -62,10 +63,14 @@ const cli = meow(help, {
 	}
 })
 
-function operation() {
+async function operation() {
+	const input = cli.input[0]
+	if(cli.flags.prompt || input === 'prompt'){
+		await prompt()
+	}
 	if (cli.flags.serverless) {
 		cli.flags.stage = getStage(cli.flags.stage)
-		switch (cli.input[0]) {
+		switch (input) {
 			case 'serve':
 			case 'dev':
 				return serverlessDev(cli.flags)
@@ -80,7 +85,7 @@ function operation() {
 		}
 	}
 
-	switch (cli.input[0]) {
+	switch (input) {
 		case 'serve':
 			return serve(cli.flags)
 		case 'test':
