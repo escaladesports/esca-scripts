@@ -73,6 +73,7 @@
     "webpack-bundle-analyzer": "^2.9.2",
     "webpack-dev-server": "^2.11.1",
     "webpack-node-externals": "^1.6.0",
+    "yaml": "^0.3.0",
     "yn-cli": "^1.0.0"
   }
 }

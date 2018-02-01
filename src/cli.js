@@ -47,6 +47,9 @@ const cli = meow(help, {
 		},
 		yn: {
 			type: 'boolean'
+		},
+		start: {
+			type: 'string',
 		}
 	}
 })
