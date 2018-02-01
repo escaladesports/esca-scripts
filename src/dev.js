@@ -1,7 +1,6 @@
 import webpack from 'webpack'
 import Server from 'webpack-dev-server'
 import opn from 'opn'
-import { spawn } from 'child-process-promise'
 import { getPortPromise } from 'portfinder'
 
 export default async function (config, options) {

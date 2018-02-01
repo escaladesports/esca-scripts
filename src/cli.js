@@ -5,6 +5,7 @@ import webpack from './webpack'
 import serve from './serve'
 import test from './test'
 import serverlessDeploy from './serverless-deploy'
+import getStage from './get-stage'
 
 const cli = meow(help, {
 	flags: {
@@ -49,12 +50,16 @@ const cli = meow(help, {
 	}
 })
 
+if(cli.flags.serverless){
+	options.stage = getStage(options.stage)
+}
+
 switch(cli.input[0]){
 	case 'serve':
 		serve(cli.flags)
 		break
 	case 'test':
-		test()
+		test(cli.flags)
 		break
 	case 'dev':
 		webpack(cli, true)

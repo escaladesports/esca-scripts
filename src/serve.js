@@ -6,5 +6,5 @@ export default function(options){
 	let dir = options.dir || options.input || options.output
 	dir = join(process.cwd(), dir)
 	console.log(`Starting server at ${dir}`)
-	spawn(`cd "${dir}" && static-server --open`)
+	spawn(`cd "${dir}" && static-server --open`, options, true)
 }
