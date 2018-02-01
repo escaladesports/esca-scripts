@@ -11,12 +11,12 @@
   "scripts": {
     "analyze": "babel-node src/cli analyze --input './src/cli.js'",
     "build": "babel-node src/cli build --input './src/cli.js' --cli",
+    "build:react": "babel-node src/cli build ---input ./dev/react.js --output ./dist/react.js --react --browser --minify false",
     "dev": "babel-node src/cli dev ---input './dev/script.js, ./dev/index.html'",
-    "dist": "babel-node dist/cli dev ---input './dev/react.js, ./dev/index.html' --react",
-    "src": "babel-node src/cli dev ---input './dev/react.js, ./dev/index.html' --react",
+    "dev:react": "babel-node src/cli dev ---input './dev/react.js, ./dev/index.html' --react",
     "help": "babel-node src/cli --help",
     "prepublishOnly": "npm run test && npm run build",
-    "serve": "babel-node src/cli serve",
+    "serve": "babel-node src/cli serve --dir dev",
     "test-bak": "mocha --require babel-core/register",
     "test": "npm run build && node dist/cli test"
   },

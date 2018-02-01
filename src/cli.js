@@ -66,10 +66,6 @@ const cli = meow(`
 	}
 })
 
-if(cli.flags.react){
-	cli.flags.browser = true
-}
-
 switch(cli.input[0]){
 	case 'serve':
 		serve(cli.flags)
