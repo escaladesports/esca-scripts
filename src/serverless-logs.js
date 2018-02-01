@@ -15,12 +15,12 @@ async function getFirstFunction(){
 export default async function (options) {
 	let cmd = `serverless logs --tail --stage ${options.stage}`
 
-	let options = []
-	if(options.start){
-		options.push('--startTime', options.start)
+	let args = []
+	if (args.start){
+		args.push('--startTime', options.start)
 	}
-	options.push('--function', options.function || await getFirstFunction())
+	args.push('--function', options.function || await getFirstFunction())
 
-	cmd = `${cmd} ${options.join(' ')}`
+	cmd = `${cmd} ${args.join(' ')}`
 	return await spawn(cmd)
 }
