@@ -1,16 +1,14 @@
-import { spawn } from 'child-process-promise'
+import { pathExists, outputJson } from 'fs-extra'
+
+import spawn from './spawn'
 import { babel } from '../package.json'
-import { pathExists, outputJson, remove } from 'fs-extra'
 
 export default async function(){
 	if (!await pathExists('.babelrc')) {
 		await outputJson('.babelrc', babel, { spaces: '\t' })
 	}
 	try {
-		await spawn('mocha --require babel-core/register', [], {
-			shell: true,
-			stdio: 'inherit',
-		})
+		await spawn('mocha --require babel-core/register')
 	}
 	catch(err){}
 }
