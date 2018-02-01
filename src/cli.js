@@ -4,10 +4,11 @@ import help from './help'
 import webpack from './webpack'
 import serve from './serve'
 import test from './test'
-import serverlessDeploy from './serverless-deploy'
-import serverlessTest from './serverless-test'
-import serverlessLogs from './serverless-logs'
-import serverlessDev from './serverless-dev'
+import serverlessDeploy from './serverless/deploy'
+import serverlessTest from './serverless/test'
+import serverlessLogs from './serverless/logs'
+import serverlessDev from './serverless/dev'
+import serverlessBuild from './serverless/build'
 import getStage from './get-stage'
 
 const cli = meow(help, {
@@ -93,6 +94,9 @@ switch(cli.input[0]){
 		break
 	case 'logs':
 		serverlessLogs(cli.flags)
+		break
+	case 'build':
+		serverlessBuild(cli.flags)
 		break
 	default:
 		webpack(cli)

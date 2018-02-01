@@ -2,7 +2,7 @@ import { readFile } from 'fs-extra'
 import { join } from 'path'
 import { load } from 'js-yaml'
 
-import spawn from './spawn'
+import spawn from '../spawn'
 
 async function getFirstFunction(){
 	let config = await readFile(join(process.cwd(), '/serverless.yml'))
