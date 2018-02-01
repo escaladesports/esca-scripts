@@ -35,6 +35,12 @@ const cli = meow(help, {
 		},
 		port: {
 			type: 'string',
+		},
+		serverless: {
+			type: 'boolean'
+		},
+		stage: {
+			type: 'string'
 		}
 	}
 })
