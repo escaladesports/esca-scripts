@@ -19,5 +19,5 @@ export default async function (options) {
 	}
 	args.push('--function', options.function || await getFirstFunction())
 	cmd = `${cmd} ${args.join(' ')}`
-	return await spawn(cmd)
+	return await spawn(cmd, options)
 }
