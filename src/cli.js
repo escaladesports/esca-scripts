@@ -52,7 +52,7 @@ const cli = meow(help, {
 })
 
 if(cli.flags.serverless){
-	options.stage = getStage(options.stage)
+	cli.flags.stage = getStage(cli.flags.stage)
 }
 
 switch(cli.input[0]){
