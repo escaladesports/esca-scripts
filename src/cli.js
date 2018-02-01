@@ -11,7 +11,7 @@ const cli = meow(`
 		$ build     Creates a distribution build
 		$ dev       Opens a development server
 		$ serve     Serves static content
-		$ analyze   Analyze filesizes
+		$ analyze   Analyze dependency sizes
 		$ test      Runs mocha tests
 
 	Options

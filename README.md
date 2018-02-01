@@ -1,22 +1,43 @@
-# JavaScript Module Boilerplate
+# esca-scripts
 
-A simple JavaScript boilerplate that outputs to ES5 and ES6.
+Reusable CLI scripts for devops.
 
-## Getting started
+## Installation
 
 ```bash
-git clone git@github.com:escaladesports/javascript-module-boilerplate.git --depth=1 your-module
-cd your-module
-rm -rf .git
+yarn add esca-scripts
 ```
-
-Also make sure to edit the `package.json` file with a new name, version number, author, and anything else you might need.
 
 ## Usage
 
-- `yarn test`: Run mocha tests
-- `yarn analyze`: View bundle sizes
+```
+Usage
+	$ esca-scripts <command> <options>
 
-# Unit Testing
+Commands
+	$ build     Creates a distribution build
+	$ dev       Opens a development server
+	$ serve     Serves static content
+	$ analyze   Analyze dependency sizes
+	$ test      Runs mocha tests
 
-Unit tests will be performed pre-commit and pre-publish. You can change this in the npm scripts if this doesn't work well with your use case.
+Options
+	--input    Input path or file
+					Default: ./src/index.js
+	--output   Output path or file
+					Default: [src path]/dist/[src name]
+	--minify   Minifies JavaScript, default: true
+	--env      Change environment variable, default: production
+	--dir      Directory to serve if serving static content
+					Default: ./dist
+	--open     Open development site in browser, default: true
+	--port     Set to specify development site port
+					If not set, the first open port found will be used
+
+Project Options
+	--browser      Set for a browser project
+	--react        Set for a React component
+	--gatsby       Set for a Gatsby project
+	--mobx         Set if including MobX in your React or Gatsby project
+	--cli          Set for a CLI project
+```
