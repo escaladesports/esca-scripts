@@ -6,6 +6,15 @@ const defaultOptions = {
 	stdio: 'inherit',
 }
 
-export default async function (cmd, args = defaultArgs, options = defaultOptions){
-	return await spawn(cmd, args, options)
+export default async function (cmd, exit, args = defaultArgs, options = defaultOptions){
+	try{
+		const res = await spawn(cmd, defaultArgs, defaultOptions)
+		return res
+	}
+	catch(err){
+		if(exit){
+			console.error(err)
+			process.exit(1)
+		}
+	}
 }
