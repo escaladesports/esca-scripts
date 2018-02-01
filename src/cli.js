@@ -46,7 +46,7 @@ const cli = meow(help, {
 			type: 'string',
 			default: 'staging',
 		},
-		yn: {
+		prompt: {
 			type: 'boolean'
 		},
 		start: {
