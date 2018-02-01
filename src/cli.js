@@ -96,8 +96,11 @@ switch(cli.input[0]){
 		serverlessLogs(cli.flags)
 		break
 	case 'build':
-		serverlessBuild(cli.flags)
+		if (cli.flags.serverless) {
+			serverlessBuild(cli.flags)
+		}
+		else {
+			webpack(cli)
+		}
 		break
-	default:
-		webpack(cli)
 }
