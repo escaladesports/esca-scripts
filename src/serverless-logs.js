@@ -6,6 +6,7 @@ import spawn from './spawn'
 
 async function getFirstFunction(){
 	let config = await readFile(join(process.cwd(), '/serverless.yml'))
+	config = config.toString()
 	console.log('CONFIG:', config)
 	config = yaml.eval(config)
 	console.log('YAML:', config)
