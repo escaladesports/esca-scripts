@@ -94,6 +94,7 @@ async function operation() {
 		case 'dev':
 			return webpack(cli, true)
 		case 'build':
+		case 'analyze':
 			return webpack(cli)
 		case 'reset':
 			return reset(cli.flags)
