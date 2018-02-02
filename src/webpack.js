@@ -41,9 +41,7 @@ export default async function (cli, dev) {
 	}
 
 	const config = {
-		...webpackConfig(cli.flags, input),
-		entry: input,
-		output: output
+		...webpackConfig(cli.flags, input, output)
 	}
 
 	if (!dev) {

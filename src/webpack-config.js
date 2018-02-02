@@ -6,7 +6,7 @@ import nodeExternals from 'webpack-node-externals'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ReloadHtmlPlugin from 'reload-html-webpack-plugin'
 
-export default function(options, input){
+export default function(options, input, output){
 	const plugins = []
 	const babelPresets = [
 		'es2015',
@@ -14,7 +14,9 @@ export default function(options, input){
 	]
 	const babelPlugins = []
 	const config = {
-		plugins: plugins,
+		entry: input,
+		output,
+		plugins,
 		resolve: {
 			extensions: ['.js', '.jsx', '.json']
 		},
@@ -38,8 +40,6 @@ export default function(options, input){
 			}]
 		}
 	}
-
-
 
 	// Environment specific plugins
 	let env = options.env || process.env.NODE_ENV
@@ -74,16 +74,19 @@ export default function(options, input){
 
 	// Option specific plugins
 	if (options.analyze) {
+		console.log('Building for analyzation...')
 		plugins.push(new BundleAnalyzerPlugin())
 		delete config.rules
 	}
 	if (options.cli) {
+		console.log('Building CLI...')
 		plugins.push(new webpack.BannerPlugin({
 			banner: '#!/usr/bin/env node',
 			raw: true
 		}))
 	}
 	if (!options.analyze && !options.browser) {
+		console.log('Building for Node.js...')
 		config.target = 'node'
 		config.externals = [ nodeExternals() ]
 	}
@@ -97,6 +100,11 @@ export default function(options, input){
 				debug: false,
 			})
 		)
+	}
+	if (options.component) {
+		console.log('Building for component...')
+		config.output.libraryTarget = 'umd'
+		config.output.umdNamedDefine = false
 	}
 	if(options.react){
 		console.log('Building for React...')
