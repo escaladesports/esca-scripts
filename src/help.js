@@ -8,6 +8,7 @@ export default `
 		$ serve          Serves static content
 		$ analyze        Analyze dependency sizes
 		$ test           Runs mocha tests
+		$ reset          Resets git, npm, and serverless configs
 		$ prevent-push   Exit process if current branch is master
 
 	Options
