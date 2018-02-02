@@ -33,7 +33,8 @@ export default `
 
 	Project Options
 		--browser      Set for a browser project
-		--react        Set for a React component
+		--react        Set for a React project
+		--component    Set for a component (usually with React option)
 		--gatsby       Set for a Gatsby project
 		--cli          Set for a CLI project
 		--serverless   Set for a serverless project
