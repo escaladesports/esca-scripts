@@ -3,11 +3,12 @@ export default `
 		$ esca-scripts <command> <options>
 
 	Commands
-		$ build     Creates a distribution build
-		$ dev       Opens a development server
-		$ serve     Serves static content
-		$ analyze   Analyze dependency sizes
-		$ test      Runs mocha tests
+		$ build          Creates a distribution build
+		$ dev            Opens a development server
+		$ serve          Serves static content
+		$ analyze        Analyze dependency sizes
+		$ test           Runs mocha tests
+		$ prevent-push   Exit process if current branch is master
 
 	Options
 		--input     Input path or file

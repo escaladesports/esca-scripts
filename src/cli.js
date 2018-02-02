@@ -7,6 +7,7 @@ import webpack from './webpack'
 import serve from './serve'
 import test from './test'
 import reset from './reset'
+import preventPush from './prevent-master-push'
 import getStage from './serverless/get-stage'
 import serverlessDeploy from './serverless/deploy'
 import serverlessTest from './serverless/test'
@@ -96,6 +97,8 @@ async function operation() {
 			return webpack(cli)
 		case 'reset':
 			return reset(cli.flags)
+		case 'prevent-push':
+			return preventPush()
 	}
 }
 operation()
