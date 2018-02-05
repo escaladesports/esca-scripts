@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import jsCookie from 'js-cookie'
 
 export default class Component extends React.Component {
 	constructor(props) {
@@ -8,6 +9,7 @@ export default class Component extends React.Component {
 	componentDidMount() {
 		const testVar = 'test'
 		console.log('TESTVAR:', testVar)
+		console.log('MODULE:', jsCookie)
 	}
 	render() {
 		return (

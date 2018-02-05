@@ -100,6 +100,12 @@ export default function(options, input, output){
 				debug: false,
 			})
 		)
+		babelPlugins.push([
+			'transform-runtime', {
+				polyfill: false,
+				regenerator: true
+			}
+		])
 	}
 	if (options.component) {
 		console.log('Building for component...')
