@@ -117,6 +117,7 @@ export default function(options, input, output){
 		else {
 			config.output.umdNamedDefine = false
 		}
+		babelPlugins.push('add-module-exports')
 	}
 	if(options.react){
 		console.log('Building for React...')
