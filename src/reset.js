@@ -19,7 +19,7 @@ async function resetPackage(options) {
 	const pkg = await readJson('package.json')
 	pkg.name = options.name || basename(process.cwd())
 	pkg.version = options.version || '0.0.0'
-	await outputJson('package.json', pkg)
+	await outputJson('package.json', pkg, { spaces: 2 })
 }
 
 async function resetGit(options) {
@@ -37,7 +37,7 @@ async function resetGit(options) {
 
 async function resetServerless(options){
 	if(!await pathExists('serverless.yml')){
-		console.log('No serverless.yml file found')
+		return console.log('No serverless.yml file found')
 	}
 	console.log('Resetting serverless config...')
 	let config = await readFile('serverless.yml')
