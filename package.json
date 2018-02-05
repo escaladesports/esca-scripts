@@ -1,6 +1,6 @@
 {
   "name": "esca-scripts",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "main": "dist/cli.js",
   "author": "Kennedy Rose <krose@escaladesports.com>",
   "repository": {
@@ -15,8 +15,8 @@
     "build:react": "babel-node src/cli build ---input ./dev/react-component.js --output ./dist/react.js --react --minify false --component",
     "dev": "babel-node src/cli dev ---input './dev/react.js, ./dev/index.html' --react --browser",
     "dev:react": "babel-node src/cli dev ---input './dev/react.js, ./dev/index.html' --react",
-	 "help": "babel-node src/cli --help",
-	 "open": "babel-node src/cli open --travis",
+    "help": "babel-node src/cli --help",
+    "open": "babel-node src/cli open --travis",
     "prepublishOnly": "npm run build",
     "reset": "babel-node src/cli reset",
     "serve": "babel-node src/cli serve --dir dev",
