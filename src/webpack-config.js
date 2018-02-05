@@ -122,7 +122,13 @@ export default function(options, input, output){
 	if(options.react){
 		console.log('Building for React...')
 		babelPresets.length = 0
-		if(options.browser){
+		if (options.browser) {
+			babelPlugins.push([
+				'transform-runtime', {
+					polyfill: false,
+					regenerator: true
+				}
+			])
 			babelPresets.push('es2015')
 		}
 		babelPresets.push(
