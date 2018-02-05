@@ -1,15 +1,32 @@
 import { join, parse } from 'path'
 import { pathExists, outputJson } from 'fs-extra'
+import glob from 'globby'
+import clone from 'clone'
 
 import webpackConfig from './webpack-config'
 import build from './build'
 import devServer from './dev'
 import postcssConfig from './postcss-config'
 
-export default async function (cli, dev) {
+export default async function startWebpack(cli, dev) {
 	let input = cli.flags.input || './src/index.js'
 	input = input.split(',').map(str => str.trim())
 	let output = cli.flags.output
+
+	// If multiple inputs
+	if (cli.flags.multiple) {
+		input = await glob(input)
+		await Promise.all(input.map(input => {
+			let singleCli = clone(cli)
+			delete singleCli.flags.multiple
+			singleCli.flags.input = input
+			let fileName = parse(input).base
+			singleCli.flags.output = join(output, fileName)
+			return startWebpack(singleCli, dev)
+		}))
+		return
+	}
+
 	if (!output) {
 		output = input[0].split('/')
 		for (let i = output.length; i--;) {
