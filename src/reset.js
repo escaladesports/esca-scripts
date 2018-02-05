@@ -57,7 +57,7 @@ async function resetServerless(options){
 export default async function(options){
 	await Promise.all([
 		resetPackage(options),
-		resetGit(options),
 		resetServerless(options),
 	])
+	await resetGit(options)
 }
