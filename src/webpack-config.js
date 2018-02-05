@@ -111,6 +111,7 @@ export default function(options, input, output){
 		console.log('Building for component...')
 		config.output.libraryTarget = 'umd'
 		if(options.name){
+			console.log(`Building UMD component with name: ${options.name}`)
 			config.output.library = options.name
 			config.output.umdNamedDefine = true
 		}
@@ -131,6 +132,9 @@ export default function(options, input, output){
 				}
 			])
 			babelPresets.push('es2015')
+		}
+		if (options.component) {
+			babelPlugins.push('add-module-exports')
 		}
 		babelPresets.push(
 			'react',
