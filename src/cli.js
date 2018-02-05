@@ -7,6 +7,7 @@ import webpack from './webpack'
 import serve from './serve'
 import test from './test'
 import reset from './reset'
+import clean from './clean'
 import preventPush from './prevent-master-push'
 import getStage from './serverless/get-stage'
 import serverlessDeploy from './serverless/deploy'
@@ -106,6 +107,8 @@ async function operation() {
 			return reset(cli.flags)
 		case 'prevent-push':
 			return preventPush()
+		case 'clean':
+			return clean()
 	}
 }
 operation()
