@@ -104,7 +104,13 @@ export default function(options, input, output){
 	if (options.component) {
 		console.log('Building for component...')
 		config.output.libraryTarget = 'umd'
-		config.output.umdNamedDefine = false
+		if(options.name){
+			config.output.library = options.name
+			config.output.umdNamedDefine = true
+		}
+		else {
+			config.output.umdNamedDefine = false
+		}
 	}
 	if(options.react){
 		console.log('Building for React...')

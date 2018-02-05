@@ -63,6 +63,9 @@ const cli = meow(help, {
 		},
 		component: {
 			type: 'boolean'
+		},
+		name: {
+			type: 'string'
 		}
 	}
 })
