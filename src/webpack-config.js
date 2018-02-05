@@ -115,6 +115,9 @@ export default function(options, input, output){
 	if(options.react){
 		console.log('Building for React...')
 		babelPresets.length = 0
+		if(options.browser){
+			babelPresets.push('es2015')
+		}
 		babelPresets.push(
 			'react',
 			'stage-3'
