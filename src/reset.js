@@ -12,7 +12,10 @@ import spawn from './spawn'
 import getConfig from './serverless/get-config'
 
 async function resetPackage(options) {
-	if (!await pathExists('package.json')) return
+	if (!await pathExists('package.json')){
+		return console.log('No package.json file found')
+	}
+	console.log('Resetting package.json file...')
 	const pkg = await readJson('package.json')
 	pkg.name = options.name || basename(process.cwd())
 	pkg.version = options.version || '0.0.0'
@@ -20,7 +23,10 @@ async function resetPackage(options) {
 }
 
 async function resetGit(options) {
-	if (!await pathExists('.git')) return
+	if (!await pathExists('.git')){
+		return console.log('No .git directory found')
+	}
+	console.log('Resetting git...')
 	await remove('.git')
 	await spawn([
 		`git init`,
@@ -30,7 +36,10 @@ async function resetGit(options) {
 }
 
 async function resetServerless(options){
-	if(!await pathExists('serverless.yml')) return
+	if(!await pathExists('serverless.yml')){
+		console.log('No serverless.yml file found')
+	}
+	console.log('Resetting serverless config...')
 	let config = await readFile('serverless.yml')
 	config = config.toString()
 	config = config.split('\n')
