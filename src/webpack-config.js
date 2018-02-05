@@ -122,6 +122,7 @@ export default function(options, input, output){
 	if(options.react){
 		console.log('Building for React...')
 		babelPresets.length = 0
+		babelPlugins.length = 0
 		if (options.browser) {
 			babelPlugins.push([
 				'transform-runtime', {
@@ -135,7 +136,6 @@ export default function(options, input, output){
 			'react',
 			'stage-3'
 		)
-		babelPlugins.length = 0
 		babelPlugins.push(
 			["styled-jsx/babel", {
 				"plugins": [
