@@ -1,6 +1,6 @@
 {
   "name": "esca-scripts",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "main": "dist/cli.js",
   "author": "Kennedy Rose <krose@escaladesports.com>",
   "repository": {
@@ -11,8 +11,8 @@
   "scripts": {
     "analyze": "babel-node src/cli analyze --input './src/cli.js'",
     "build": "babel-node src/cli build --input './src/cli.js' --cli",
-	 "build:browser": "babel-node src/cli build --input './dev/browser.js' --output './dist/browser.js' --component --name TestComponent --browser",
-	 "build:es6": "babel-node src/cli build --input './dev/browser.js' --output './dist/browser.js' --es6",
+    "build:browser": "babel-node src/cli build --input './dev/browser.js' --output './dist/browser.js' --component --name TestComponent --browser",
+    "build:es6": "babel-node src/cli build --input './dev/browser.js' --output './dist/browser.js' --es6",
     "build:multi": "babel-node src/cli build --multiple --input './dev/*.js' --output ./dist --minify false",
     "build:react": "babel-node src/cli build --input ./dev/react-component.js --output ./dist/react.js --react --component",
     "clean": "babel-node src/cli clean",
