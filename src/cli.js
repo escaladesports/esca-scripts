@@ -30,7 +30,7 @@ const cli = meow(help, {
 		},
 		minify: {
 			type: 'boolean',
-			default: true
+			default: false
 		},
 		dir: {
 			type: 'string',
@@ -67,6 +67,9 @@ const cli = meow(help, {
 		},
 		name: {
 			type: 'string'
+		},
+		es6: {
+			type: 'boolean'
 		}
 	}
 })

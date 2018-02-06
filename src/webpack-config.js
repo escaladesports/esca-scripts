@@ -9,7 +9,7 @@ import ReloadHtmlPlugin from 'reload-html-webpack-plugin'
 export default function(options, input, output){
 	const plugins = []
 	const babelPresets = [
-		'es2015',
+		options.es6 ? 'es2016' : 'es2015',
 		'stage-3',
 	]
 	const babelPlugins = []
@@ -21,24 +21,31 @@ export default function(options, input, output){
 			extensions: ['.js', '.jsx', '.json']
 		},
 		module: {
-			rules: [{
-				test: /\.js?$/,
-				exclude: /node_modules/,
-				use: [{
-					loader: 'babel-loader',
-					options: {
-						presets: babelPresets,
-						plugins: babelPlugins,
-					},
-				}],
-				include: join(process.cwd(), '/'),
-			}, {
-				test: /\.html?$/,
-				use: {
-					loader: 'html-loader'
-				}
-			}]
+			rules: [
+				{
+					test: /\.js?$/,
+					exclude: /node_modules/,
+					use: [{
+						loader: 'babel-loader',
+						options: {
+							presets: babelPresets,
+							plugins: babelPlugins,
+						},
+					}],
+					include: join(process.cwd(), '/'),
+				},
+				{
+					test: /\.html?$/,
+					use: {
+						loader: 'html-loader'
+					}
+				},
+			]
 		}
+	}
+
+	if(options.es6){
+		console.log('Building for ES6...')
 	}
 
 	// Environment specific plugins
@@ -151,6 +158,9 @@ export default function(options, input, output){
 			}]
 		)
 	}
+
+	//console.log('babelPresets', babelPresets)
+	//console.log('babelPlugins', babelPlugins)
 
 	return config
 }
