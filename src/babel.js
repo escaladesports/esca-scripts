@@ -1,14 +1,38 @@
-import { pathExists, outputJson } from 'fs-extra'
+import { outputJson, ensureFile } from 'fs-extra'
 
+import BabelConfig from './babel-config'
 import spawn from './spawn'
-import { babel } from '../package.json'
 
-export default async function(options){
-	if (!await pathExists('.babelrc')) {
-		await outputJson('.babelrc', babel, { spaces: '\t' })
+export default async function (cli){
+
+	let input = cli.flags.input || './src/index.js'
+	input = input.split(',').map(str => str.trim())
+	let output = cli.flags.output
+
+	if (!output) {
+		output = input[0].split('/')
+		for (let i = output.length; i--;) {
+			if (output[i] === 'src') {
+				output[i] = 'dist'
+				break
+			}
+		}
+		output = output.join('/')
 	}
-	try {
-		await spawn('mocha --require babel-core/register', options)
+
+	const config = BabelConfig(cli.flags)
+
+	const flags = []
+	if (cli.flags.multiple){
+		flags.push(`--out-dir`, `"${output}"`)
 	}
-	catch(err){}
+	else{
+		flags.push(`--out-file`, `"${output}"`)
+	}
+	flags.push(`--source-maps`)
+
+	await outputJson(`.babelrc`, config, { spaces: '\t' })
+	await ensureFile(output)
+	console.log(`Building with Babel...`)
+	await spawn(`babel "${input}" ${flags.join(' ')}`, cli.flags)
 }

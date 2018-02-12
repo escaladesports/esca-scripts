@@ -1,20 +1,20 @@
 export default function(options){
 	console.log(`Building Babel config...`)
-	const babelPresets = [
+	const presets = [
 		'stage-3',
 	]
-	const babelPlugins = []
+	const plugins = []
 
 	if(options.es6){
 		console.log(`Building babel config for ES6...`)
-		babelPresets.unshift('es2016')
+		presets.unshift('es2016')
 	}
 	else{
-		babelPresets.unshift('es2015')
+		presets.unshift('es2015')
 	}
 	if (options.browser) {
 		console.log(`Building babel config for browser...`)
-		babelPlugins.push([
+		plugins.push([
 			'transform-runtime', {
 				polyfill: false,
 				regenerator: true
@@ -23,33 +23,33 @@ export default function(options){
 	}
 	if (options.component) {
 		console.log(`Building babel config for component...`)
-		babelPlugins.push('add-module-exports')
+		plugins.push('add-module-exports')
 	}
 	if (options.react) {
 		console.log(`Building babel config for React...`)
 
 
-		babelPresets.length = 0
-		babelPlugins.length = 0
+		presets.length = 0
+		plugins.length = 0
 		if (options.browser) {
-			babelPlugins.push([
+			plugins.push([
 				'transform-runtime', {
 					polyfill: false,
 					regenerator: true
 				}
 			])
-			babelPresets.push('es2015')
+			presets.push('es2015')
 		}
 		if (options.component) {
-			babelPlugins.push('add-module-exports')
+			plugins.push('add-module-exports')
 		}
 
 
-		babelPresets.push(
+		presets.push(
 			'react',
 			'stage-3'
 		)
-		babelPlugins.push(
+		plugins.push(
 			["styled-jsx/babel", {
 				"plugins": [
 					"styled-jsx-plugin-postcss"
@@ -62,7 +62,7 @@ export default function(options){
 	}
 
 	return {
-		babelPresets,
-		babelPlugins,
+		presets,
+		plugins,
 	}
 }

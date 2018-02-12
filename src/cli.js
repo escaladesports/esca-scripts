@@ -15,6 +15,7 @@ import serverlessTest from './serverless/test'
 import serverlessLogs from './serverless/logs'
 import serverlessDev from './serverless/dev'
 import serverlessBuild from './serverless/build'
+import babelBuild from './babel'
 
 const cli = meow(help, {
 	flags: {
@@ -93,6 +94,12 @@ async function operation() {
 				return serverlessLogs(cli.flags)
 			case 'build':
 				return serverlessBuild(cli.flags)
+		}
+	}
+	else if(cli.flags.babel){
+		switch(input){
+			case 'build':
+				return babelBuild(cli)
 		}
 	}
 

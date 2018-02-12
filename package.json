@@ -11,6 +11,7 @@
   "scripts": {
     "analyze": "babel-node src/cli analyze --input './src/cli.js'",
     "build": "babel-node src/cli build --input './src/cli.js' --cli",
+    "build:babel": "babel-node src/cli build --input './src/cli.js' --babel",
     "build:browser": "babel-node src/cli build --input './dev/browser.js' --output './dist/browser.js' --component --name TestComponent --browser",
     "build:es6": "babel-node src/cli build --input './dev/browser.js' --output './dist/browser.js' --es6",
     "build:multi": "babel-node src/cli build --multiple --input './dev/*.js' --output ./dist --minify false",

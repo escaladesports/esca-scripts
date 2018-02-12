@@ -4,7 +4,7 @@ import glob from 'globby'
 import clone from 'clone'
 
 import webpackConfig from './webpack-config'
-import build from './build'
+import build from './webpack-build'
 import devServer from './dev'
 import postcssConfig from './postcss-config'
 

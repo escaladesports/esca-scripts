@@ -6,12 +6,12 @@ import nodeExternals from 'webpack-node-externals'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ReloadHtmlPlugin from 'reload-html-webpack-plugin'
 
-import babelConfig from './babel-config'
+import BabelConfig from './babel-config'
 
 export default function(options, input, output){
 	console.log(`Building Webpack config...`)
 	const plugins = []
-	const { babelPresets, babelPlugins } = babelConfig(options)
+	const babelConfig = BabelConfig(options)
 	const config = {
 		entry: input,
 		output,
@@ -26,10 +26,7 @@ export default function(options, input, output){
 					exclude: /node_modules/,
 					use: [{
 						loader: 'babel-loader',
-						options: {
-							presets: babelPresets,
-							plugins: babelPlugins,
-						},
+						options: babelConfig,
 					}],
 					include: join(process.cwd(), '/'),
 				},
