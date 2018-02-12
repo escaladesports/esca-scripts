@@ -27,28 +27,7 @@ export default function(options){
 	}
 	if (options.react) {
 		console.log(`Building babel config for React...`)
-
-
-		presets.length = 0
-		plugins.length = 0
-		if (options.browser) {
-			plugins.push([
-				'transform-runtime', {
-					polyfill: false,
-					regenerator: true
-				}
-			])
-			presets.push('es2015')
-		}
-		if (options.component) {
-			plugins.push('add-module-exports')
-		}
-
-
-		presets.push(
-			'react',
-			'stage-3'
-		)
+		presets.push('react')
 		plugins.push(
 			["styled-jsx/babel", {
 				"plugins": [
