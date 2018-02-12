@@ -6,13 +6,12 @@ import nodeExternals from 'webpack-node-externals'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ReloadHtmlPlugin from 'reload-html-webpack-plugin'
 
+import babelConfig from './babel-config'
+
 export default function(options, input, output){
+	console.log(`Building Webpack config...`)
 	const plugins = []
-	const babelPresets = [
-		options.es6 ? 'es2016' : 'es2015',
-		'stage-3',
-	]
-	const babelPlugins = []
+	const { babelPresets, babelPlugins } = babelConfig(options)
 	const config = {
 		entry: input,
 		output,
@@ -44,15 +43,11 @@ export default function(options, input, output){
 		}
 	}
 
-	if(options.es6){
-		console.log('Building for ES6...')
-	}
-
 	// Environment specific plugins
 	let env = options.env || process.env.NODE_ENV
 	if(options.dev) env = 'development'
 	if (env === 'production') {
-		console.log('Building production environment...')
+		console.log(`Building Webpack config for production environment...`)
 		plugins.push(new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production')
 		}))
@@ -61,7 +56,7 @@ export default function(options, input, output){
 		}
 	}
 	if (env === 'development') {
-		console.log('Building development environment...')
+		console.log(`Building Webpack config for development environment...`)
 		plugins.push(new webpack.HotModuleReplacementPlugin())
 		input.forEach(input => {
 			if (extname(input) === '.html') {
@@ -81,24 +76,24 @@ export default function(options, input, output){
 
 	// Option specific plugins
 	if (options.analyze) {
-		console.log('Building for analyzation...')
+		console.log(`Building Webpack config for analyzation...`)
 		plugins.push(new BundleAnalyzerPlugin())
 		delete config.rules
 	}
 	if (options.cli) {
-		console.log('Building CLI...')
+		console.log(`Building Webpack config for CLI...`)
 		plugins.push(new webpack.BannerPlugin({
 			banner: '#!/usr/bin/env node',
 			raw: true
 		}))
 	}
 	if (!options.analyze && !options.browser) {
-		console.log('Building for Node.js...')
+		console.log(`Building Webpack config for Node.js...`)
 		config.target = 'node'
 		config.externals = [ nodeExternals() ]
 	}
 	if (options.browser) {
-		console.log('Building for browser...')
+		console.log(`Building Webpack config for browser...`)
 		plugins.push(
 			new webpack.optimize.ModuleConcatenationPlugin(),
 			new webpack.optimize.OccurrenceOrderPlugin(),
@@ -107,15 +102,9 @@ export default function(options, input, output){
 				debug: false,
 			})
 		)
-		babelPlugins.push([
-			'transform-runtime', {
-				polyfill: false,
-				regenerator: true
-			}
-		])
 	}
 	if (options.component) {
-		console.log('Building for component...')
+		console.log(`Building Webpack config for component...`)
 		config.output.libraryTarget = 'umd'
 		if(options.name){
 			console.log(`Building UMD component with name: ${options.name}`)
@@ -125,42 +114,7 @@ export default function(options, input, output){
 		else {
 			config.output.umdNamedDefine = false
 		}
-		babelPlugins.push('add-module-exports')
 	}
-	if(options.react){
-		console.log('Building for React...')
-		babelPresets.length = 0
-		babelPlugins.length = 0
-		if (options.browser) {
-			babelPlugins.push([
-				'transform-runtime', {
-					polyfill: false,
-					regenerator: true
-				}
-			])
-			babelPresets.push('es2015')
-		}
-		if (options.component) {
-			babelPlugins.push('add-module-exports')
-		}
-		babelPresets.push(
-			'react',
-			'stage-3'
-		)
-		babelPlugins.push(
-			["styled-jsx/babel", {
-				"plugins": [
-					"styled-jsx-plugin-postcss"
-				]
-			}],
-			["transform-react-remove-prop-types", {
-				"mode": "wrap"
-			}]
-		)
-	}
-
-	//console.log('babelPresets', babelPresets)
-	//console.log('babelPlugins', babelPlugins)
 
 	return config
 }

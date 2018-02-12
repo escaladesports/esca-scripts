@@ -17,7 +17,7 @@
     "build:react": "babel-node src/cli build --input ./dev/react-component.js --output ./dist/react.js --react --component",
     "clean": "babel-node src/cli clean",
     "dev": "babel-node src/cli dev ---input './dev/react.js, ./dev/index.html' --react --browser",
-    "dev:react": "babel-node src/cli dev ---input './dev/react.js, ./dev/index.html' --react",
+    "dev:react": "babel-node src/cli dev ---input './dev/react.js, ./dev/index.html' --react --browser",
     "help": "babel-node src/cli --help",
     "travis": "opn https://travis-ci.org/escaladesports/esca-scripts/branches",
     "prepublishOnly": "npm run build",
