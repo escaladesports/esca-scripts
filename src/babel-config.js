@@ -12,15 +12,12 @@ export default function(options){
 	else{
 		presets.unshift('es2015')
 	}
-	if (options.browser) {
-		console.log(`Building babel config for browser...`)
-		plugins.push([
-			'transform-runtime', {
-				polyfill: false,
-				regenerator: true
-			}
-		])
-	}
+	plugins.push([
+		'transform-runtime', {
+			polyfill: false,
+			regenerator: true
+		}
+	])
 	if (options.component) {
 		console.log(`Building babel config for component...`)
 		plugins.push('add-module-exports')
