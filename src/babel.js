@@ -34,5 +34,7 @@ export default async function (cli){
 	await outputJson(`.babelrc`, config, { spaces: '\t' })
 	await ensureFile(output)
 	console.log(`Building with Babel...`)
-	await spawn(`babel "${input}" ${flags.join(' ')}`, cli.flags)
+	const cmd = `babel "${input}" ${flags.join(' ')}`
+	console.log(cmd)
+	await spawn(cmd, cli.flags)
 }
