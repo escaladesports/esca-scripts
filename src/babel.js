@@ -1,4 +1,4 @@
-import { outputJson, ensureFile } from 'fs-extra'
+import { outputJson, ensureFile, ensureDir } from 'fs-extra'
 
 import BabelConfig from './babel-config'
 import spawn from './spawn'
@@ -25,14 +25,15 @@ export default async function (cli){
 	const flags = []
 	if (cli.flags.multiple){
 		flags.push(`--out-dir`, `"${output}"`)
+		await ensureDir(output)
 	}
 	else{
 		flags.push(`--out-file`, `"${output}"`)
+		await ensureFile(output)
 	}
 	flags.push(`--source-maps`)
 
 	await outputJson(`.babelrc`, config, { spaces: '\t' })
-	await ensureFile(output)
 	console.log(`Building with Babel...`)
 	const cmd = `babel "${input}" ${flags.join(' ')}`
 	console.log(cmd)
