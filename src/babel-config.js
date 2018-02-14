@@ -36,7 +36,8 @@ export default function(options){
 			}]
 		)
 	}
-	if(options.cli && options.babel){
+	if (options.cli && options.babel) {
+		console.log(`Building babel config for CLI...`)
 		plugins.push([
 			'shebang', {
 				force: true
