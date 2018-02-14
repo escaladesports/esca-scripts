@@ -36,6 +36,13 @@ export default function(options){
 			}]
 		)
 	}
+	if(options.cli && options.babel){
+		plugins.push([
+			'shebang', {
+				force: true
+			}
+		])
+	}
 
 	return {
 		presets,

@@ -77,7 +77,7 @@ export default function(options, input, output){
 		plugins.push(new BundleAnalyzerPlugin())
 		delete config.rules
 	}
-	if (options.cli) {
+	if (options.cli && !options.babel) {
 		console.log(`Building Webpack config for CLI...`)
 		plugins.push(new webpack.BannerPlugin({
 			banner: '#!/usr/bin/env node',
