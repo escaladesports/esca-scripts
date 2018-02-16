@@ -14,6 +14,7 @@ export default function(options){
 	}
 	plugins.push(
 		'syntax-dynamic-import',
+		'dynamic-import-node',
 		['transform-runtime', {
 			polyfill: false,
 			regenerator: true
