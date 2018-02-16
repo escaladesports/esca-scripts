@@ -1,6 +1,6 @@
 {
   "name": "esca-scripts",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "main": "dist/cli.js",
   "author": "Kennedy Rose <krose@escaladesports.com>",
   "repository": {
@@ -35,8 +35,8 @@
       "stage-3"
     ],
     "plugins": [
-		"syntax-dynamic-import",
-		"dynamic-import-node",
+      "syntax-dynamic-import",
+      "dynamic-import-node",
       "transform-runtime"
     ]
   },
