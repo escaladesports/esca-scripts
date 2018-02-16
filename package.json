@@ -35,6 +35,7 @@
       "stage-3"
     ],
     "plugins": [
+      "syntax-dynamic-import",
       "transform-runtime"
     ]
   },
