@@ -11,13 +11,36 @@ import {
 import spawn from './spawn'
 import getConfig from './serverless/get-config'
 
+function recursiveReset(options, obj){
+	for(let i in obj){
+		if(i === 'dependencies' || i === 'devDependencies'){
+			continue
+		}
+		if(typeof obj[i] === 'object'){
+			obj[i] = recursiveReset(options, obj[i])
+		}
+		else{
+			obj[i] = obj[i].replace(options.oldName, options.name)
+		}
+	}
+	return obj
+}
+
 async function resetPackage(options) {
 	if (!await pathExists('package.json')){
 		return console.log('No package.json file found')
 	}
 	console.log('Resetting package.json file...')
 	const pkg = await readJson('package.json')
-	pkg.name = options.name || basename(process.cwd())
+	if (pkg.name) {
+		options.oldName = pkg.name
+		if(!options.name){
+			options.name = basename(process.cwd())
+			recursiveReset(options, pkg)
+		}
+		pkg.name = options.name
+		recursiveReset(options, pkg)
+	}
 	pkg.version = options.version || '0.0.0'
 	await outputJson('package.json', pkg, { spaces: 2 })
 }
