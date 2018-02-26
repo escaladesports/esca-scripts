@@ -39,6 +39,7 @@ async function resetPackage(options) {
 			recursiveReset(options, pkg)
 		}
 		pkg.name = options.name
+		pkg.keywords = options.name.split(`-`)
 		recursiveReset(options, pkg)
 	}
 	pkg.version = options.version || '0.0.0'
