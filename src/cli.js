@@ -71,6 +71,10 @@ const cli = meow(help, {
 		},
 		es6: {
 			type: 'boolean'
+		},
+		styledJsx: {
+			type: 'boolean',
+			default: false
 		}
 	}
 })

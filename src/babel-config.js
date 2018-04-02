@@ -28,13 +28,18 @@ export default function(options){
 		console.log(`Building babel config for React...`)
 		presets.push('react')
 		plugins.push(
+			["transform-react-remove-prop-types", {
+				"mode": "wrap"
+			}]
+		)
+	}
+	if (options.styledJsx) {
+		console.log(`Building babel config for styled-jsx...`)
+		plugins.push(
 			["styled-jsx/babel", {
 				"plugins": [
 					"styled-jsx-plugin-postcss"
 				]
-			}],
-			["transform-react-remove-prop-types", {
-				"mode": "wrap"
 			}]
 		)
 	}
