@@ -27,6 +27,8 @@ export default function(options, input, output){
 					use: [{
 						loader: 'babel-loader',
 						options: babelConfig,
+					}, {
+						loader: 'workerize-loader'
 					}],
 					include: join(process.cwd(), '/'),
 				},
