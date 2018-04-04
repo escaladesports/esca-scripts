@@ -4,8 +4,5 @@ export default {
 		'postcss-nested': {},
 		'lost': {},
 		'css-mqpacker': {},
-		'cssnano': {
-			autoprefixer: false
-		},
 	},
 }

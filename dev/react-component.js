@@ -22,12 +22,14 @@ export default class Component extends React.Component {
 		console.log('MODULE:', jsCookie)
 	}
 	render() {
+		let color = 'red'
 		return (
 			<div>
 				This is a React component!
-				<style jsx>{`
+				<style jsx global>{`
 					div{
-						color: red;
+						color: ${color};
+						height: 20px;
 					}
 				`}</style>
 			</div>
