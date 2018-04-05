@@ -77,7 +77,6 @@
     "opn": "^5.2.0",
     "opn-cli": "^3.1.0",
     "portfinder": "^1.0.13",
-    "postcss-cssnext": "^3.1.0",
     "postcss-nested": "^3.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
