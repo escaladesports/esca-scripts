@@ -51,12 +51,6 @@ export default async function startWebpack(cli, dev) {
 		cli.flags.dev = true
 	}
 
-	if(cli.flags.react){
-		if (!await pathExists('.postcssrc')) {
-			await outputJson('.postcssrc', postcssConfig, { spaces: '\t' })
-		}
-	}
-
 	const config = {
 		...webpackConfig(cli.flags, input, output)
 	}

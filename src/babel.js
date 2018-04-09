@@ -34,6 +34,14 @@ export default async function (cli){
 	flags.push(`--source-maps`)
 
 	await outputJson(`.babelrc`, config, { spaces: '\t' })
+
+
+	if (cli.flags.react) {
+		if (!await pathExists('.postcssrc')) {
+			await outputJson('.postcssrc', postcssConfig, { spaces: '\t' })
+		}
+	}
+
 	console.log(`Building with Babel...`)
 	const cmd = `babel "${input}" ${flags.join(' ')}`
 	console.log(cmd)
