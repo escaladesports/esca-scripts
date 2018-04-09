@@ -1,5 +1,4 @@
 import { join, parse } from 'path'
-import { pathExists, outputJson } from 'fs-extra'
 import glob from 'globby'
 import clone from 'clone'
 

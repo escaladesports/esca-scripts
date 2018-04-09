@@ -1,4 +1,9 @@
-import { outputJson, ensureFile, ensureDir } from 'fs-extra'
+import {
+	outputJson,
+	ensureFile,
+	ensureDir,
+	pathExists,
+} from 'fs-extra'
 
 import BabelConfig from './babel-config'
 import spawn from './spawn'
