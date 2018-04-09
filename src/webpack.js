@@ -5,7 +5,6 @@ import clone from 'clone'
 import webpackConfig from './webpack-config'
 import build from './webpack-build'
 import devServer from './dev'
-import postcssConfig from './postcss-config'
 
 export default async function startWebpack(cli, dev) {
 	let input = cli.flags.input || './src/index.js'

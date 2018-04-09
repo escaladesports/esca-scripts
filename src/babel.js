@@ -7,6 +7,7 @@ import {
 
 import BabelConfig from './babel-config'
 import spawn from './spawn'
+import postcssConfig from './postcss-config'
 
 export default async function (cli){
 
