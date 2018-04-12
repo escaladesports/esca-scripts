@@ -1,5 +1,5 @@
 import program from 'subcommander'
-import babelRun from './babel/run'
+import runBabel from './babel/run'
 import pkg from '../package.json'
 
 program.command(`version`, {
@@ -11,10 +11,14 @@ program.command(`version`, {
 
 program.command('build', {
 		desc: `Build distributable files`,
-		callback: () => {
-			console.log(`Building...`)
-			babelRun()
-		}
+		callback: runBabel
+	})
+	.option('src', {
+		default: 'src'
+	})
+	.option('dist', {
+		default: 'dist'
 	})
 
 program.parse()
+
