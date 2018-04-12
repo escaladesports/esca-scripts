@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "build": "babel src/index.js --out-file dist/index.js",
-    "dev": "babel --no-babelrc test-src --out-dir dist --presets env,stage-0,react",
+    "dev": "babel-node src build",
     "test": "jest",
     "travis": "opn https://travis-ci.org/escaladesports/esca-scripts/branches"
   },
