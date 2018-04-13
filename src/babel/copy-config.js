@@ -1,9 +1,9 @@
 import { outputJson } from 'fs-extra'
 import createConfig from './config'
 
-async function copyConfig(){
+async function copyConfig(options){
 	console.log('Copying Babel config...')
-	const config = createConfig()
+	const config = createConfig(options)
 	await outputJson('.babelrc', config, { spaces: '\t' })
 }
 

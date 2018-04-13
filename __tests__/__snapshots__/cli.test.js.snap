@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Build React Should build a valid React component 1`] = `
+exports[`Build Should build a valid React component 1`] = `
 <div>
   Testing.
 </div>

@@ -10,16 +10,27 @@ describe(`CLI help`, () => {
 		expect(res.stderr).toEqual(``)
 	})
 })
-describe(`Build React`, () => {
-	it(`Should build a valid React component`, async () => {
+describe(`Build`, () => {
+	beforeAll(async () => {
 		let res = await exec(`babel-node dist build --src test-src --dist test-dist`)
 		expect(res.stderr).toEqual(``)
-		let TestComponent = await import('../test-dist/react')
+	})
+	it(`Should build a valid React component`, async () => {
+		let TestComponent = await import('../test-dist/component')
 		TestComponent = TestComponent.default
 		let component = renderer.create(
 			<TestComponent />
 		)
 		let tree = component.toJSON()
 		expect(tree).toMatchSnapshot()
+	})
+	it(`Should build a valid JavaScript module`, async () => {
+		let TestModule = await import('../test-dist/module')
+		TestModule = TestModule.default
+		expect(TestModule()).toEqual(19)
+	})
+	afterAll(async () => {
+		let res = await exec(`rm -rf test-dist`)
+		expect(res.stderr).toEqual(``)
 	})
 })

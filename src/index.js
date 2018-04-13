@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import program from 'subcommander'
 import buildBabel from './babel/build'
 import pkg from '../package.json'

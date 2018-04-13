@@ -1,10 +1,13 @@
-import { outputJson } from 'fs-extra'
+import { remove } from 'fs-extra'
 import { exec } from 'child-process-promise'
 import copyConfig from './copy-config'
 
 async function buildBabel(options){
 	console.log('Building with Babel...')
-	await copyConfig(options)
+	await Promise.all([
+		remove(options.dist),
+		copyConfig(options),
+	])
 	await exec(`babel ${options.src} --out-dir ${options.dist}`)
 }
 

@@ -1,4 +1,5 @@
-function createConfig(){
+function createConfig(options){
+	console.log('Building Babel config...')
 	const config = {
 		presets: [
 			'env',
@@ -6,15 +7,18 @@ function createConfig(){
 			'react',
 		],
 		plugins: [
-			[
-				'styled-jsx/babel', {
-					plugins: [ 'styled-jsx-plugin-postcss']
-				}
-			],
-			"syntax-dynamic-import",
-			"dynamic-import-node"
+			['styled-jsx/babel', {
+				plugins: [ 'styled-jsx-plugin-postcss' ]
+			}],
+			'syntax-dynamic-import',
+			'dynamic-import-node',
+			['transform-runtime', {
+				polyfill: false,
+				regenerator: true
+			}]
 		]
 	}
+
 	return config
 }
 
