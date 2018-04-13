@@ -10,7 +10,9 @@ function createConfig(){
 				'styled-jsx/babel', {
 					plugins: [ 'styled-jsx-plugin-postcss']
 				}
-			]
+			],
+			"syntax-dynamic-import",
+			"dynamic-import-node"
 		]
 	}
 	return config
