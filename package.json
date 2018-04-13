@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "babel-node src build --bundle",
-    "dev": "parcel dev/index.html",
+    "dev": "babel-node src dev",
     "help": "babel-node src --help",
     "test": "npm run build && jest",
     "travis": "opn https://travis-ci.org/escaladesports/esca-scripts/branches"

@@ -2,6 +2,8 @@
 import program from 'subcommander'
 import buildBabel from './babel/build'
 import buildWebpack from './webpack/build'
+import dev from './dev'
+import { exec } from 'child-process-promise'
 import pkg from '../package.json'
 
 program.command(`version`, {
@@ -29,6 +31,15 @@ program.command(`build`, {
 	.option(`bundle`, {
 		flag: true,
 		desc: `Bundles your project into a single file`,
+	})
+
+program.command(`dev`, {
+		desc: `Live develop in browser`,
+		callback: dev,
+	})
+	.option(`src`, {
+		default: `dev`,
+		desc: `The source directory or file of your project`,
 	})
 
 program.parse()
