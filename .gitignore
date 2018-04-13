@@ -25,3 +25,4 @@ coverage/
 temp
 temp-*
 test-dist
+.cache

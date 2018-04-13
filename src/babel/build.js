@@ -8,7 +8,7 @@ async function buildBabel(options){
 		remove(options.dist),
 		copyConfig(options),
 	])
-	await exec(`babel ${options.src} --out-dir ${options.dist}`)
+	await exec(`babel ${options.src} --out-dir ${options.dist} --source-maps`)
 }
 
 export default buildBabel

@@ -1,24 +1,34 @@
 #!/usr/bin/env node
 import program from 'subcommander'
 import buildBabel from './babel/build'
+import buildWebpack from './webpack/build'
 import pkg from '../package.json'
 
 program.command(`version`, {
 		desc: `Display ${pkg.name} version`,
-		callback: () => {
-			console.log(pkg.version)
-		}
+		callback: () => console.log(pkg.version)
 	})
 
-program.command('build', {
+program.command(`build`, {
 		desc: `Build distributable files`,
-		callback: buildBabel
+		callback: options => {
+			if(!options.bundle){
+				return buildBabel(options)
+			}
+			buildWebpack(options)
+		},
 	})
-	.option('src', {
-		default: 'src'
+	.option(`src`, {
+		default: `src`,
+		desc: `The source directory of your project`,
 	})
-	.option('dist', {
-		default: 'dist'
+	.option(`dist`, {
+		default: `dist`,
+		desc: `The distribution directory your project will compile to`,
+	})
+	.option(`bundle`, {
+		flag: true,
+		desc: `Bundles your project into a single file`,
 	})
 
 program.parse()
