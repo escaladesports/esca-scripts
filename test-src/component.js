@@ -12,7 +12,22 @@ class TestComponent extends React.Component{
 	}
 	render(){
 		return (
-			<div>{this.state.test}</div>
+			<section>
+				<div>1</div>
+				<div>{this.state.test}</div>
+				<div>3</div>
+				<style jsx>{`
+					section{
+						lost-utility: clearfix;
+						div{
+							lost-column: 1/3;
+							:nth-of-type(2){
+								color: red;
+							}
+						}
+					}
+				`}</style>
+			</section>
 		)
 	}
 }
