@@ -12,11 +12,11 @@ describe(`CLI help`, () => {
 })
 describe(`Build`, () => {
 	beforeAll(async () => {
-		let res = await exec(`babel-node dist build --src test-src --dist test-dist`)
+		let res = await exec(`babel-node dist build --src src-test --dist dist-test`)
 		expect(res.stderr).toEqual(``)
 	})
 	it(`Should build a valid React component`, async () => {
-		let TestComponent = await import('../test-dist/component')
+		let TestComponent = await import('../dist-test/component')
 		TestComponent = TestComponent.default
 		let component = renderer.create(
 			<TestComponent />
@@ -25,7 +25,7 @@ describe(`Build`, () => {
 		expect(tree).toMatchSnapshot()
 	})
 	it(`Should build a valid JavaScript module`, async () => {
-		let TestModule = await import('../test-dist/module')
+		let TestModule = await import('../dist-test/module')
 		TestModule = TestModule.default
 		expect(TestModule()).toEqual(19)
 	})

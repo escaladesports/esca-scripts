@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Test from '../test-src/component'
+import Test from '../src-test/component'
 
 render(
 	<Test />,

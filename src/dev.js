@@ -34,6 +34,7 @@ async function dev(options){
 	args.push(`--out-dir`, `"${options.dist}"`)
 	if (await pathExists(`${options.src}/index.html`)){
 		console.log(`Found index.html`)
+		options.src = `${options.src}/index.html`
 		args.push(`--open`)
 	}
 	await Promise.all([

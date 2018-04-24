@@ -13,12 +13,12 @@
   },
   "scripts": {
     "analyze": "cd dist && source-map-explorer index.js index.map",
-    "build-test": "parcel build src/index.js --out-file index --target node --no-minify",
+    "build-test": "parcel build src/index.js --out-file index --target node --no-minify --no-cache",
     "build": "babel-node src build",
     "bundle": "babel-node src bundle --src dev",
     "dev": "babel-node src dev",
     "help": "babel-node src --help",
-    "test": "npm run build && jest",
+    "test": "jest",
     "travis": "opn https://travis-ci.org/escaladesports/esca-scripts/branches"
   },
   "dependencies": {
