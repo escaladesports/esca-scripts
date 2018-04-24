@@ -40,6 +40,9 @@ program.command(`dev`, {
 	.option(`src`, {
 		desc: `The source directory or file of your project`,
 	})
+	.option(`dist`, {
+		desc: `The distribution directory of your project`,
+	})
 
 program.parse()
 
