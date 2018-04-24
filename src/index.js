@@ -38,7 +38,6 @@ program.command(`dev`, {
 		callback: dev,
 	})
 	.option(`src`, {
-		default: `dev`,
 		desc: `The source directory or file of your project`,
 	})
 
