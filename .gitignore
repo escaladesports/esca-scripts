@@ -21,6 +21,7 @@ coverage/
 .eslintcache
 .babelrc
 .postcssrc
+report.html
 
 # Temporary
 temp

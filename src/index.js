@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import program from 'subcommander'
-import buildBabel from './babel/build'
-import buildWebpack from './webpack/build'
+import build from './build'
+import bundle from './bundle'
 import dev from './dev'
 import { exec } from 'child-process-promise'
 import pkg from '../package.json'
@@ -13,24 +13,26 @@ program.command(`version`, {
 
 program.command(`build`, {
 		desc: `Build distributable files`,
-		callback: options => {
-			if(!options.bundle){
-				return buildBabel(options)
-			}
-			buildWebpack(options)
-		},
+		callback: build,
 	})
 	.option(`src`, {
 		default: `src`,
 		desc: `The source directory of your project`,
 	})
 	.option(`dist`, {
-		default: `dist`,
 		desc: `The distribution directory your project will compile to`,
 	})
-	.option(`bundle`, {
-		flag: true,
-		desc: `Bundles your project into a single file`,
+
+program.command(`bundle`, {
+		desc: `Build distributable bundle`,
+		callback: bundle,
+	})
+	.option(`src`, {
+		default: `src`,
+		desc: `The source file of your project`,
+	})
+	.option(`dist`, {
+		desc: `The distribution file/directory your project will compile to`,
 	})
 
 program.command(`dev`, {

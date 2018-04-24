@@ -40,6 +40,7 @@ async function dev(options){
 		copyBabelConfig(options),
 		copyPostCSSConfig(options),
 	])
+	console.log(`Running dev in ${options.src}`)
 	spawn(`parcel ${options.src}`, args, {
 		shell: true,
 		stdio: `inherit`

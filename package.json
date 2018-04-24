@@ -12,7 +12,10 @@
     "esca-scripts": "dist/index.js"
   },
   "scripts": {
-    "build": "babel-node src build --bundle",
+    "analyze": "cd dist && source-map-explorer index.js index.map",
+    "build-test": "parcel build src/index.js --out-file index --target node --no-minify",
+    "build": "babel-node src build",
+    "bundle": "babel-node src bundle --src dev",
     "dev": "babel-node src dev",
     "help": "babel-node src --help",
     "test": "npm run build && jest",
@@ -36,9 +39,11 @@
     "jest": "^22.4.3",
     "lost": "^8.2.1",
     "parcel-bundler": "^1.7.0",
+    "parcel-plugin-bundle-visualiser": "^1.0.2",
     "postcss-nested": "^3.0.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "source-map-explorer": "^1.5.0",
     "styled-jsx": "^2.2.6",
     "styled-jsx-plugin-postcss": "^0.1.3",
     "subcommander": "^1.0.0",

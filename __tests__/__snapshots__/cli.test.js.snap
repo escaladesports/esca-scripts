@@ -1,7 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Build Should build a valid React component 1`] = `
-<div>
-  Testing.
-</div>
+<section
+  className="jsx-173927583"
+>
+  <div
+    className="jsx-173927583"
+  >
+    1
+  </div>
+  <div
+    className="jsx-173927583"
+  >
+    Testing.
+  </div>
+  <div
+    className="jsx-173927583"
+  >
+    3
+  </div>
+</section>
 `;
