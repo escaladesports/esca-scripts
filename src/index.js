@@ -3,6 +3,7 @@ import program from 'subcommander'
 import build from './build'
 import bundle from './bundle'
 import dev from './dev'
+import serve from './serve'
 import { exec } from 'child-process-promise'
 import pkg from '../package.json'
 
@@ -44,6 +45,19 @@ program.command(`dev`, {
 	})
 	.option(`dist`, {
 		desc: `The distribution directory of your project`,
+	})
+
+program.command(`serve`, {
+		desc: `Serve a directory of static files`,
+		callback: serve,
+	})
+	.option(`dir`, {
+		desc: `The directory to serve`,
+		default: `dist`,
+	})
+	.option(`no-open`, {
+		desc: `Prevents browser from opening`,
+		flag: true,
 	})
 
 program.parse()

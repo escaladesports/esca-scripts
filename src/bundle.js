@@ -44,7 +44,7 @@ async function bundle(options){
 		copyBabelConfig(options),
 		copyPostCSSConfig(options),
 	])
-	spawn(`parcel build ${options.src} --no-minify`, args, {
+	spawn(`parcel build ${options.src}`, args, {
 		shell: true,
 		stdio: `inherit`
 	})

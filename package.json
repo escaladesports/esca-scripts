@@ -18,6 +18,7 @@
     "bundle": "babel-node src bundle --src dev",
     "dev": "babel-node src dev",
     "help": "babel-node src --help",
+    "serve": "babel-node src serve --dir dist-dev",
     "test": "jest",
     "travis": "opn https://travis-ci.org/escaladesports/esca-scripts/branches"
   },
@@ -36,6 +37,7 @@
     "child-process-promise": "^2.2.1",
     "css-mqpacker": "^6.0.2",
     "fs-extra": "^5.0.0",
+    "get-port": "^3.2.0",
     "jest": "^22.4.3",
     "lost": "^8.2.1",
     "parcel-bundler": "^1.7.0",
@@ -44,6 +46,7 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "source-map-explorer": "^1.5.0",
+    "static-server": "^2.2.1",
     "styled-jsx": "^2.2.6",
     "styled-jsx-plugin-postcss": "^0.1.3",
     "subcommander": "^1.0.0",
