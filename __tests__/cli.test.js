@@ -34,3 +34,12 @@ describe(`Build`, () => {
 		expect(res.stderr).toEqual(``)
 	})
 })
+describe(`Run`, () => {
+	it(`Should run a file with ES6`, async () => {
+		let res = await exec(`babel-node dist run --file src-test/run.js`)
+		res = res.stdout.trim()
+		res = res.split('\n')
+		res = res.pop()
+		expect(res).toEqual(`19`)
+	})
+})

@@ -4,6 +4,7 @@ import build from './build'
 import bundle from './bundle'
 import dev from './dev'
 import serve from './serve'
+import run from './run'
 import { exec } from 'child-process-promise'
 import pkg from '../package.json'
 
@@ -58,6 +59,15 @@ program.command(`serve`, {
 	.option(`no-open`, {
 		desc: `Prevents browser from opening`,
 		flag: true,
+	})
+
+program.command(`run`, {
+		desc: `Run a file in Node.js`,
+		callback: run,
+	})
+	.option(`file`, {
+		desc: `The file to run`,
+		default: `./src/index`
 	})
 
 program.parse()
