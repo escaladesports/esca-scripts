@@ -19,7 +19,7 @@ describe(`Bundle`, () => {
 			port: await getPort(),
 		})
 		server.start()
-		let browser = await puppeteer.launch()
+		let browser = await puppeteer.launch({ args: ['--no-sandbox'] })
 		let page = await browser.newPage()
 		await page.goto(`http://localhost:${server.port}`)
 		await page.waitForSelector(`.test`)
