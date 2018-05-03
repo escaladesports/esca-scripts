@@ -4,12 +4,13 @@ import copyBabelConfig from './babel/copy-config'
 async function runFile(options){
 	await copyBabelConfig(options)
 
-	let res = spawn(`jest`, [], {
-		shell: true,
-		stdio: `inherit`
-	})
-	if (res.stderr){
-		console.error(res.stderr)
+	try {
+		await spawn(`jest`, [], {
+			shell: true,
+			stdio: `inherit`
+		})
+	}
+	catch(err){
 		process.exit(1)
 	}
 }
