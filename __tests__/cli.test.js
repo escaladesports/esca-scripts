@@ -19,18 +19,13 @@ describe(`Bundle`, () => {
 			port: await getPort(),
 		})
 		server.start()
-		console.log(`Starting browser...`)
-		let browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
-		console.log(`Starting page...`)
+		let browser = await puppeteer.launch({ args: ['--no-sandbox'] })
 		let page = await browser.newPage()
-		console.log(`Going to page...`)
 		await page.goto(`http://localhost:${server.port}`)
-		console.log(`Waiting for selector...`)
 		await page.waitForSelector(`.test`)
-		console.log(`Waiting for eval...`)
 		const content = await page.$eval(`.test`, e => e.textContent)
-		console.log(`Done with browser...`)
 		expect(content).toEqual(`Testing.`)
+		expect('').toEqual(`Testing.`)
 		browser.close()
 
 		// Clean
