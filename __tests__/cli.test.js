@@ -37,7 +37,7 @@ describe(`Bundle`, () => {
 		res = await exec(`rm -rf dist-bundle-test`)
 		expect(res.stderr).toEqual(``)
 		server.stop()
-	}, 10 * 1000)
+	}, 60 * 1000)
 })
 describe(`CLI help`, () => {
 	it(`Should return something`, async () => {
