@@ -58,7 +58,6 @@ describe(`Bundle`, () => {
 		await page.waitForSelector(`.test`)
 		const content = await page.$eval(`.test`, e => e.textContent)
 		expect(content).toEqual(`Testing.`)
-		expect('').toEqual(`Testing.`)
 
 	}, 60 * 1000)
 	afterAll(async () => {
