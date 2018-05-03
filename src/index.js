@@ -10,6 +10,7 @@ import serve from './serve'
 import run from './run'
 import rename from './rename'
 import reset from './reset'
+import test from './tests'
 
 program.command(`version`, {
 		desc: `Display ${name} version`,
@@ -87,6 +88,11 @@ program.command(`reset`, {
 	})
 	.option(`name`, {
 		desc: `The new name`
+	})
+
+program.command(`test`, {
+		desc: `Runs tests`,
+		callback: test,
 	})
 
 program.parse()

@@ -60,7 +60,7 @@ describe(`Build`, () => {
 		expect(TestModule()).toEqual(19)
 	})
 	afterAll(async () => {
-		let res = await exec(`rm -rf dist-test`)
+		let res = await exec(`rm -rf test-dist`)
 		expect(res.stderr).toEqual(``)
 	})
 })
