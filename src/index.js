@@ -5,6 +5,7 @@ import bundle from './bundle'
 import dev from './dev'
 import serve from './serve'
 import run from './run'
+import rename from './rename'
 import { exec } from 'child-process-promise'
 import pkg from '../package.json'
 
@@ -68,6 +69,11 @@ program.command(`run`, {
 	.option(`file`, {
 		desc: `The file to run`,
 		default: `./src/index`
+	})
+
+program.command(`rename`, {
+		desc: `Renames project files`,
+		callback: rename,
 	})
 
 program.parse()

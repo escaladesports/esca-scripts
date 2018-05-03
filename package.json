@@ -12,14 +12,14 @@
     "esca-scripts": "dist/index.js"
   },
   "scripts": {
-    "build-test": "parcel build src/index.js --out-file index --target node --no-minify --no-cache",
+    "build:test": "parcel build src-test/component.js --global Component --no-minify --no-cache",
     "build": "babel-node src build",
-    "bundle": "babel-node src bundle --src dev",
+    "bundle": "babel-node src bundle --src src-test/component.js --dist dist-bundle-test",
     "dev": "babel-node src dev",
-	 "help": "babel-node src --help",
-	 "run": "babel-node src run --file src-test/run.js",
+    "help": "babel-node src --help",
+    "run": "babel-node src run --file src-test/run.js",
     "serve": "babel-node src serve --dir dist-dev",
-    "test": "jest",
+    "test": "npm run build && jest -u",
     "travis": "opn https://travis-ci.org/escaladesports/esca-scripts/branches"
   },
   "dependencies": {
@@ -40,7 +40,7 @@
     "get-port": "^3.2.0",
     "jest": "^22.4.3",
     "lost": "^8.2.1",
-    "parcel-bundler": "^1.7.0",
+    "parcel-bundler": "^1.7.1",
     "parcel-plugin-bundle-visualiser": "^1.0.2",
     "postcss-nested": "^3.0.0",
     "react": "^16.3.1",

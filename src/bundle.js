@@ -41,10 +41,10 @@ async function bundle(options){
 	args.push(`--out-dir`, `"${options.dist}"`)
 	await Promise.all([
 		remove(options.dist),
-		copyBabelConfig(options),
-		copyPostCSSConfig(options),
+		//copyBabelConfig(options),
+		//copyPostCSSConfig(options),
 	])
-	spawn(`parcel build ${options.src}`, args, {
+	spawn(`parcel build ${options.src} --no-minify`, args, {
 		shell: true,
 		stdio: `inherit`
 	})
