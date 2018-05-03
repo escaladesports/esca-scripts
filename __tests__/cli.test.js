@@ -8,38 +8,6 @@ import Server from 'static-server'
 import { join } from 'path'
 import { version } from '../package.json'
 
-describe(`Bundle`, () => {
-	let server
-	let browser
-	beforeAll(async () => {
-		server = new Server({
-			rootPath: `dist-bundle-test`,
-			port: await getPort(),
-		})
-		server.start()
-		browser = await puppeteer.launch({ args: ['--no-sandbox'] })
-	})
-	it(`Should build a valid React component`, async () => {
-		let res = await exec(`babel-node dist bundle --src src-test/index.html --dist dist-bundle-test`)
-		expect(res.stderr).toEqual(``)
-
-		// Test in browser
-		let page = await browser.newPage()
-		await page.goto(`http://localhost:${server.port}`)
-		await page.waitForSelector(`.test`)
-		const content = await page.$eval(`.test`, e => e.textContent)
-		expect(content).toEqual(`Testing.`)
-		expect('').toEqual(`Testing.`)
-
-		// Clean
-		res = await exec(`rm -rf dist-bundle-test`)
-		expect(res.stderr).toEqual(``)
-	}, 60 * 1000)
-	afterAll(async () => {
-		browser.close()
-		server.stop()
-	})
-})
 describe(`CLI help`, () => {
 	it(`Should return something`, async () => {
 		let res = await exec(`babel-node dist version`)
@@ -68,6 +36,35 @@ describe(`Build`, () => {
 	})
 	afterAll(async () => {
 		let res = await exec(`rm -rf test-dist`)
+		expect(res.stderr).toEqual(``)
+	})
+})
+describe(`Bundle`, () => {
+	let server
+	let browser
+	beforeAll(async () => {
+		server = new Server({
+			rootPath: `dist-bundle-test`,
+			port: await getPort(),
+		})
+		server.start()
+		browser = await puppeteer.launch({ args: ['--no-sandbox'] })
+		let res = await exec(`babel-node dist bundle --src src-test/index.html --dist dist-bundle-test`)
+		expect(res.stderr).toEqual(``)
+	})
+	it(`Should build a valid React component`, async () => {
+		let page = await browser.newPage()
+		await page.goto(`http://localhost:${server.port}`)
+		await page.waitForSelector(`.test`)
+		const content = await page.$eval(`.test`, e => e.textContent)
+		expect(content).toEqual(`Testing.`)
+		expect('').toEqual(`Testing.`)
+
+	}, 60 * 1000)
+	afterAll(async () => {
+		await browser.close()
+		server.stop()
+		let res = await exec(`rm -rf dist-bundle-test`)
 		expect(res.stderr).toEqual(``)
 	})
 })
