@@ -2,12 +2,41 @@ import { exec } from 'child-process-promise'
 import renderer from 'react-test-renderer'
 import React from 'react'
 import { copy, readFile } from 'fs-extra'
-import pkg from '../package.json'
+import puppeteer from 'puppeteer'
+import getPort from 'get-port'
+import Server from 'static-server'
+import { join } from 'path'
+import { version } from '../package.json'
 
+describe(`Bundle`, () => {
+	it(`Should build a valid React component`, async () => {
+		let res = await exec(`babel-node dist bundle --src src-test/index.html --dist dist-bundle-test`)
+		expect(res.stderr).toEqual(``)
+
+		// Test in browser
+		let server = new Server({
+			rootPath: `dist-bundle-test`,
+			port: await getPort(),
+		})
+		server.start()
+		let browser = await puppeteer.launch()
+		let page = await browser.newPage()
+		await page.goto(`http://localhost:${server.port}`)
+		await page.waitForSelector(`.test`)
+		const content = await page.$eval(`.test`, e => e.textContent)
+		expect(content).toEqual(`Testing.`)
+		browser.close()
+
+		// Clean
+		res = await exec(`rm -rf dist-bundle-test`)
+		expect(res.stderr).toEqual(``)
+		server.stop()
+	}, 10 * 1000)
+})
 describe(`CLI help`, () => {
 	it(`Should return something`, async () => {
 		let res = await exec(`babel-node dist version`)
-		expect(res.stdout).toEqual(`${pkg.version}\n`)
+		expect(res.stdout).toEqual(`${version}\n`)
 		expect(res.stderr).toEqual(``)
 	})
 })
@@ -31,26 +60,10 @@ describe(`Build`, () => {
 		expect(TestModule()).toEqual(19)
 	})
 	afterAll(async () => {
-		let res = await exec(`rm -rf test-dist`)
+		let res = await exec(`rm -rf dist-test`)
 		expect(res.stderr).toEqual(``)
 	})
 })
-/*
-describe(`Bundle`, () => {
-	it(`Should build a valid React component`, async () => {
-		let res = await exec(`babel-node dist bundle --src src-test/component.js --dist dist-bundle-test`)
-		expect(res.stderr).toEqual(``)
-
-		let TestComponent = await import(`../dist-bundle-test/component`)
-		TestComponent = TestComponent.default
-		let component = renderer.create(
-			<TestComponent />
-		)
-		let tree = component.toJSON()
-		expect(tree).toMatchSnapshot()
-	})
-})
-*/
 describe(`Rename`, () => {
 	beforeAll(async () => {
 		await Promise.all([

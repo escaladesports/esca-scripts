@@ -14,7 +14,7 @@ class TestComponent extends React.Component{
 		return (
 			<section>
 				<div>1</div>
-				<div>{this.state.test}</div>
+				<div className='test'>{this.state.test}</div>
 				<div>3</div>
 				<style jsx>{`
 					section{

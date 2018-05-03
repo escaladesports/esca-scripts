@@ -10,7 +10,7 @@ exports[`Build Should build a valid React component 1`] = `
     1
   </div>
   <div
-    className="jsx-173927583"
+    className="jsx-173927583 test"
   >
     Testing.
   </div>

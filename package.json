@@ -19,7 +19,7 @@
     "help": "babel-node src --help",
     "run": "babel-node src run --file src-test/run.js",
     "serve": "babel-node src serve --dir dist-dev",
-    "test": "npm run build && jest -u",
+    "test": "npm run build && jest",
     "travis": "opn https://travis-ci.org/escaladesports/esca-scripts/branches"
   },
   "dependencies": {
@@ -56,6 +56,7 @@
   },
   "devDependencies": {
     "opn-cli": "^3.1.0",
+    "puppeteer": "^1.3.0",
     "react-test-renderer": "^16.3.1"
   }
 }

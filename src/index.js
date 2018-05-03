@@ -2,7 +2,7 @@
 import program from 'subcommander'
 import { exec } from 'child-process-promise'
 
-import pkg from '../package.json'
+import { name, version } from '../package.json'
 import build from './build'
 import bundle from './bundle'
 import dev from './dev'
@@ -12,8 +12,8 @@ import rename from './rename'
 import reset from './reset'
 
 program.command(`version`, {
-		desc: `Display ${pkg.name} version`,
-		callback: () => console.log(pkg.version)
+		desc: `Display ${name} version`,
+		callback: () => console.log(version)
 	})
 
 program.command(`build`, {
