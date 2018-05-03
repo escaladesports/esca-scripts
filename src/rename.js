@@ -31,9 +31,6 @@ async function renamePackage(options) {
 	const pkg = await readJson(`package.json`)
 	if (pkg.name) {
 		options.oldName = pkg.name
-		if (!options.name) {
-			options.name = basename(process.cwd())
-		}
 		pkg.name = options.name
 		recursiveReset(options, pkg)
 	}
@@ -60,6 +57,9 @@ async function renameServerless(options) {
 }
 
 async function rename(options) {
+	if (!options.name) {
+		options.name = basename(process.cwd())
+	}
 	await Promise.all([
 		renamePackage(options),
 		renameServerless(options),

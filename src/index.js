@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 import program from 'subcommander'
+import { exec } from 'child-process-promise'
+
+import pkg from '../package.json'
 import build from './build'
 import bundle from './bundle'
 import dev from './dev'
 import serve from './serve'
 import run from './run'
 import rename from './rename'
-import { exec } from 'child-process-promise'
-import pkg from '../package.json'
+import reset from './reset'
 
 program.command(`version`, {
 		desc: `Display ${pkg.name} version`,
@@ -74,6 +76,17 @@ program.command(`run`, {
 program.command(`rename`, {
 		desc: `Renames project files`,
 		callback: rename,
+	})
+	.option(`name`, {
+		desc: `The new name`
+	})
+
+program.command(`reset`, {
+		desc: `Resets and renames project`,
+		callback: reset,
+	})
+	.option(`name`, {
+		desc: `The new name`
 	})
 
 program.parse()
