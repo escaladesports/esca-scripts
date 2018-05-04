@@ -1,24 +1,51 @@
-import webpack from 'webpack'
-import Server from 'webpack-dev-server'
-import opn from 'opn'
-import { getPortPromise } from 'portfinder'
+import { spawn } from 'child-process-promise'
+import { pathExists } from 'fs-extra'
+import copyBabelConfig from './babel/copy-config'
+import copyPostCSSConfig from './postcss/copy-config'
 
-export default async function (config, options) {
-	const compiler = webpack(config)
-	const server = new Server(compiler, {
-		stats: {
-			colors: true
-		}
-	})
-
-	if(!options.port){
-		options.port = await getPortPromise()
+async function getSrc() {
+	if (await pathExists(`dev`)){
+		return `dev`
 	}
-	console.log(`Starting dev server on port ${options.port}...`)
-	server.listen(options.port, 'localhost', () => {
-		console.log(`Running dev server on port ${options.port}`)
-		if (options.open) {
-			opn(`http://localhost:${options.port}`)
+	if (await pathExists(`src`)){
+		return `src`
+	}
+	return false
+}
+
+async function dev(options){
+	let args = []
+	if (!options.src){
+		options.src = await getSrc()
+		if (!options.src){
+			console.error(`No src directory found`)
+			process.exit(1)
 		}
+		console.log(`Found source directory`)
+	}
+	if (!options.dist){
+		if (options.src === `src`){
+			options.dist = `dist`
+		}
+		else{
+			options.dist = `dist-${options.src}`
+		}
+	}
+	args.push(`--out-dir`, `"${options.dist}"`)
+	if (await pathExists(`${options.src}/index.html`)){
+		console.log(`Found index.html`)
+		options.src = `${options.src}/index.html`
+		args.push(`--open`)
+	}
+	await Promise.all([
+		copyBabelConfig(options),
+		copyPostCSSConfig(options),
+	])
+	console.log(`Running dev in ${options.src}`)
+	spawn(`parcel ${options.src}`, args, {
+		shell: true,
+		stdio: `inherit`
 	})
 }
+
+export default dev

@@ -1,10 +1,21 @@
-import { join } from 'path'
+import Server from 'static-server'
+import getPort from 'get-port'
 
-import spawn from './spawn'
-
-export default function(options){
-	let dir = options.dir || options.input || options.output
-	dir = join(process.cwd(), dir)
-	console.log(`Starting server at ${dir}`)
-	spawn(`cd "${dir}" && static-server --open`, options, true)
+async function startServer(options){
+	console.log(`Starting server pointed to ${options.dir}`)
+	options = {
+		open: true,
+		...options
+	}
+	if(options.dir){
+		options.rootPath = options.dir
+		delete options.dir
+	}
+	if(!options.port){
+		options.port = await getPort({ port: 3000 })
+	}
+	const server = new Server(options)
+	server.start(() => console.log(`Started server on port ${server.port}`))
 }
+
+export default startServer
