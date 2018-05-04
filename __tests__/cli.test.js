@@ -51,7 +51,7 @@ describe(`Bundle`, () => {
 		browser = await puppeteer.launch({ args: ['--no-sandbox'] })
 		let res = await exec(`babel-node dist bundle --src src-test/index.html --dist dist-bundle-test`)
 		expect(res.stderr).toEqual(``)
-	})
+	}, 60 * 1000)
 	it(`Should build a valid React component`, async () => {
 		let page = await browser.newPage()
 		await page.goto(`http://localhost:${server.port}`)
@@ -65,7 +65,7 @@ describe(`Bundle`, () => {
 		server.stop()
 		let res = await exec(`rm -rf dist-bundle-test`)
 		expect(res.stderr).toEqual(``)
-	})
+	}, 60 * 1000)
 })
 describe(`Rename`, () => {
 	beforeAll(async () => {
