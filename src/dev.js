@@ -37,10 +37,12 @@ async function dev(options){
 		options.src = `${options.src}/index.html`
 		args.push(`--open`)
 	}
-	await Promise.all([
-		copyBabelConfig(options),
-		copyPostCSSConfig(options),
-	])
+	if (!options[`no-config`]) {
+		await Promise.all([
+			copyBabelConfig(options),
+			copyPostCSSConfig(options),
+		])
+	}
 	console.log(`Running dev in ${options.src}`)
 	spawn(`parcel ${options.src}`, args, {
 		shell: true,

@@ -1,8 +1,10 @@
 import { spawn } from 'child-process-promise'
 import copyBabelConfig from './babel/copy-config'
 
-async function runFile(options){
-	await copyBabelConfig(options)
+async function runFile(options) {
+	if (!options[`no-config`]) {
+		await copyBabelConfig(options)
+	}
 
 	try {
 		await spawn(`jest`, [], {

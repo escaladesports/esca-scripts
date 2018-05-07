@@ -28,6 +28,10 @@ program.command(`build`, {
 	.option(`dist`, {
 		desc: `The distribution directory your project will compile to`,
 	})
+	.option(`no-config`, {
+		desc: `Don't copy config files`,
+		flag: true,
+	})
 
 program.command(`bundle`, {
 		desc: `Build distributable bundle`,
@@ -40,6 +44,10 @@ program.command(`bundle`, {
 	.option(`dist`, {
 		desc: `The distribution file/directory your project will compile to`,
 	})
+	.option(`no-config`, {
+		desc: `Don't copy config files`,
+		flag: true,
+	})
 
 program.command(`dev`, {
 		desc: `Live develop in browser`,
@@ -50,6 +58,10 @@ program.command(`dev`, {
 	})
 	.option(`dist`, {
 		desc: `The distribution directory of your project`,
+	})
+	.option(`no-config`, {
+		desc: `Don't copy config files`,
+		flag: true,
 	})
 
 program.command(`serve`, {
@@ -73,6 +85,10 @@ program.command(`run`, {
 		desc: `The file to run`,
 		default: `./src/index`
 	})
+	.option(`no-config`, {
+		desc: `Don't copy config files`,
+		flag: true,
+	})
 
 program.command(`rename`, {
 		desc: `Renames project files`,
@@ -93,6 +109,10 @@ program.command(`reset`, {
 program.command(`test`, {
 		desc: `Runs tests`,
 		callback: test,
+	})
+	.option(`no-config`, {
+		desc: `Don't copy config files`,
+		flag: true,
 	})
 
 program.parse()
