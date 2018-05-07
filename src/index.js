@@ -56,7 +56,7 @@ program.command(`serve`, {
 		desc: `Serve a directory of static files`,
 		callback: serve,
 	})
-	.option(`dir`, {
+	.option(`src`, {
 		desc: `The directory to serve`,
 		default: `dist`,
 	})
