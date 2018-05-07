@@ -20,7 +20,6 @@ docs/build/
 coverage/
 .eslintcache
 .postcssrc
-.babelrc
 src
 report.html
 
