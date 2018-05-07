@@ -59,6 +59,10 @@ program.command(`dev`, {
 	.option(`dist`, {
 		desc: `The distribution directory of your project`,
 	})
+	.option(`no-hmr`, {
+		desc: `Disable hot module reloading`,
+		flag: true,
+	})
 	.option(`no-config`, {
 		desc: `Don't copy config files`,
 		flag: true,

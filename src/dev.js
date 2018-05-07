@@ -43,8 +43,11 @@ async function dev(options){
 			copyPostCSSConfig(options),
 		])
 	}
+	if (options[`no-hmr`]){
+		args.push(`--no-hmr`)
+	}
 	console.log(`Running dev in ${options.src}`)
-	spawn(`parcel ${options.src}`, args, {
+	spawn(`parcel serve ${options.src}`, args, {
 		shell: true,
 		stdio: `inherit`
 	})
