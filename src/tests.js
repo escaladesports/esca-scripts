@@ -6,6 +6,7 @@ async function runFile(options) {
 		await copyBabelConfig(options)
 	}
 
+	console.log(`Running tests...`)
 	try {
 		await spawn(`jest`, [], {
 			shell: true,
