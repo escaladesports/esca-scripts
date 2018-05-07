@@ -47,7 +47,10 @@ async function dev(options){
 		args.push(`--no-hmr`)
 	}
 	console.log(`Running dev in ${options.src}`)
-	spawn(`parcel serve ${options.src}`, args, {
+	const cmd = `parcel serve ${options.src}`
+	console.log(cmd)
+	console.log(JSON.stringify(args, null, 3))
+	spawn(cmd, args, {
 		shell: true,
 		stdio: `inherit`
 	})

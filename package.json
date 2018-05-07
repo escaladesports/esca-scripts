@@ -23,9 +23,9 @@
     "travis": "opn https://travis-ci.org/escaladesports/esca-scripts/branches"
   },
   "peerDependencies": {
-    "styled-jsx": "2.x",
     "react": "16.x",
-    "react-dom": "16.x"
+    "react-dom": "16.x",
+    "styled-jsx": "2.x"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
