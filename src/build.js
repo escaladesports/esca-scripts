@@ -16,7 +16,7 @@ async function buildBabel(options){
 			copyPostCSSConfig(options),
 		])
 	}
-	await exec(`babel ${options.src} --out-dir ${options.dist} --source-maps`)
+	await exec(`NODE_ENV=production babel ${options.src} --out-dir ${options.dist} --source-maps`)
 }
 
 export default buildBabel
