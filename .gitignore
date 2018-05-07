@@ -19,8 +19,6 @@ docs/build/
 dist-*
 coverage/
 .eslintcache
-.babelrc
-.postcssrc
 report.html
 
 # Temporary
