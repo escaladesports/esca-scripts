@@ -85,3 +85,12 @@ Option | Description | Default
 ### test
 
 Runs tests
+
+### config
+
+Copies configs
+
+Command | Description
+--- | ---
+`babel` | Copies Babel config
+`postcss` | Copies PostCSS config
