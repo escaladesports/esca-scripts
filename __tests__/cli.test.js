@@ -8,6 +8,8 @@ import Server from 'static-server'
 import { join } from 'path'
 import { version } from '../package.json'
 
+jest.setTimeout(60 * 1000)
+
 describe(`CLI help`, () => {
 	it(`Should return something`, async () => {
 		let res = await exec(`babel-node dist version`)
@@ -34,9 +36,12 @@ describe(`Build`, () => {
 		TestModule = TestModule.default
 		expect(TestModule()).toEqual(19)
 	})
+	it(`Should exit on error`, async () => {
+		let res = await exec(`babel-node dist build --src asdf --dist dist-asdf`)
+		expect(res.stderr).toBeTruthy()
+	})
 	afterAll(async () => {
-		let res = await exec(`rm -rf test-dist`)
-		expect(res.stderr).toEqual(``)
+		await exec(`rm -rf dist-test`)
 	})
 })
 describe(`Bundle`, () => {
@@ -51,7 +56,7 @@ describe(`Bundle`, () => {
 		browser = await puppeteer.launch({ args: ['--no-sandbox'] })
 		let res = await exec(`babel-node dist bundle --src src-test/index.html --dist dist-bundle-test`)
 		expect(res.stderr).toEqual(``)
-	}, 60 * 1000)
+	})
 	it(`Should build a valid React component`, async () => {
 		let page = await browser.newPage()
 		await page.goto(`http://localhost:${server.port}`)
@@ -59,13 +64,19 @@ describe(`Bundle`, () => {
 		const content = await page.$eval(`.test`, e => e.textContent)
 		expect(content).toEqual(`Testing.`)
 
-	}, 60 * 1000)
+	})
+	it(`Should exit on error`, async () => {
+		let res = await exec(`babel-node dist bundle --src src-asdf/index.html --dist dist-asdf`)
+		expect(res.stderr).toBeTruthy()
+	})
 	afterAll(async () => {
-		await browser.close()
 		server.stop()
-		let res = await exec(`rm -rf dist-bundle-test`)
-		expect(res.stderr).toEqual(``)
-	}, 60 * 1000)
+		await Promise.all([
+			browser.close(),
+			exec(`rm -rf dist-bundle-test`),
+			exec(`rm -rf dist-asdf`),
+		])
+	})
 })
 describe(`Rename`, () => {
 	beforeAll(async () => {
@@ -87,8 +98,7 @@ describe(`Rename`, () => {
 		expect(config[0]).toEqual(`service: dist-test`)
 	})
 	afterAll(async () => {
-		let res = await exec(`rm -rf test-dist`)
-		expect(res.stderr).toEqual(``)
+		await exec(`rm -rf dist-test`)
 	})
 })
 describe(`Run`, () => {
@@ -99,7 +109,12 @@ describe(`Run`, () => {
 		res = res.split(`\n`)
 		res = res.pop()
 		expect(res).toEqual(`19`)
-		res = await exec(`rm -rf test-dist`)
-		expect(res.stderr).toEqual(``)
+	})
+	it(`Should exit on error`, async () => {
+		let res = await exec(`babel-node dist run --file src-asdf/run.js`)
+		expect(res.stderr).toBeTruthy()
+	})
+	afterAll(async () => {
+		await exec(`rm -rf dist-test`)
 	})
 })
