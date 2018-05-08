@@ -49,7 +49,7 @@ async function bundle(options){
 		)
 	}
 	await Promise.all(promises)
-	spawn(`parcel build ${options.src} --no-minify`, args, {
+	spawn(`parcel build ${options.src}`, args, {
 		shell: true,
 		stdio: `inherit`
 	})
