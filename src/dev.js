@@ -48,8 +48,6 @@ async function dev(options){
 	}
 	console.log(`Running dev in ${options.src}`)
 	const cmd = `parcel serve ${options.src}`
-	console.log(cmd)
-	console.log(JSON.stringify(args, null, 3))
 	spawn(cmd, args, {
 		shell: true,
 		stdio: `inherit`
