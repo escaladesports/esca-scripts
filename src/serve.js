@@ -7,9 +7,9 @@ async function startServer(options){
 		open: true,
 		...options
 	}
-	if(options.dir){
-		options.rootPath = options.dir
-		delete options.dir
+	if(options.src){
+		options.rootPath = options.src
+		delete options.src
 	}
 	if(!options.port){
 		options.port = await getPort({ port: 3000 })
