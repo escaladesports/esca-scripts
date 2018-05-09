@@ -30,6 +30,8 @@ Option | Description | Default
 --- | --- | ---
 `--src` | The source directory of your project | `"src"`
 `--dist` | The distribution directory your project will compile to | `"dist"`
+`--no-react` | Creates configs without React | (Off)
+`--no-css` | Creates configs without PostCSS | (Off)
 
 ### bundle
 
@@ -39,6 +41,8 @@ Option | Description | Default
 --- | --- | ---
 `--src` | The source file of your project | `"dev/index.html"`
 `--dist` | The distribution file/directory your project will compile to | `"dist-dev/index.html"`
+`--no-react` | Creates configs without React | (Off)
+`--no-css` | Creates configs without PostCSS | (Off)
 
 ### dev
 
@@ -48,6 +52,8 @@ Option | Description | Default
 --- | --- | ---
 `--src` | The source file of your project | `"dev/index.html"`
 `--dist` | The distribution file/directory your project will compile to | `"dist-dev/index.html"`
+`--no-react` | Creates configs without React | (Off)
+`--no-css` | Creates configs without PostCSS | (Off)
 
 ### rename
 
@@ -72,6 +78,7 @@ Run a file in Node.js
 Option | Description | Default
 --- | --- | ---
 `--file` | The file to run | `"./src/index"`
+`--no-react` | Creates configs without React | (Off)
 
 ### serve
 

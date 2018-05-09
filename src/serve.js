@@ -1,10 +1,10 @@
 import Server from 'static-server'
 import getPort from 'get-port'
 
-async function startServer(options){
+async function startServer(options = {}){
 	console.log(`Starting server pointed to ${options.dir}`)
 	options = {
-		open: true,
+		open: options[`no-open`] ? false : true,
 		...options
 	}
 	if(options.src){
