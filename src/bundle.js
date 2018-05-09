@@ -48,6 +48,9 @@ async function bundle(options){
 			copyPostCSSConfig(options)
 		)
 	}
+	if(options.global){
+		args.push(`--global`, options.global)
+	}
 	await Promise.all(promises)
 	spawn(`parcel build ${options.src}`, args, {
 		shell: true,

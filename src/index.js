@@ -50,6 +50,9 @@ program.command(`bundle`, {
 		desc: `Don't copy config files`,
 		flag: true,
 	})
+	.option(`global`, {
+		desc: `Export a global window variable`,
+	})
 
 program.command(`dev`, {
 		desc: `Live develop in browser`,

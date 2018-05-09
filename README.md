@@ -41,6 +41,7 @@ Option | Description | Default
 --- | --- | ---
 `--src` | The source file of your project | `"dev/index.html"`
 `--dist` | The distribution file/directory your project will compile to | `"dist-dev/index.html"`
+`--global` | Pass in a name to your export as `window.{your_name} | (Off)
 `--no-react` | Creates configs without React | (Off)
 `--no-css` | Creates configs without PostCSS | (Off)
 
