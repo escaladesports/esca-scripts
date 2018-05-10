@@ -16,11 +16,13 @@ function createConfig(options){
 	}
 	if(!options[`no-react`]){
 		config.presets.push(`react`)
-		config.plugins.unshift([
-			'styled-jsx/babel', {
-				plugins: ['styled-jsx-plugin-postcss']
-			}
-		])
+		if (!options['no-css']) {
+			config.plugins.unshift([
+				'styled-jsx/babel', {
+					plugins: ['styled-jsx-plugin-postcss']
+				}
+			])
+		}
 	}
 	return config
 }
