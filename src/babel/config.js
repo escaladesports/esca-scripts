@@ -6,6 +6,7 @@ function createConfig(options){
 			'stage-0',
 		],
 		plugins: [
+			'transform-es2015-modules-commonjs',
 			'syntax-dynamic-import',
 			'dynamic-import-node',
 			['transform-runtime', {
