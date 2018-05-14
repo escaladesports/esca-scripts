@@ -34,6 +34,9 @@ async function renamePackage(options) {
 		pkg.name = options.name
 		recursiveReset(options, pkg)
 	}
+	if(pkg.keywords){
+		pkg.keywords = pkg.name.toLowerCase().split(`-`)
+	}
 	if(pkg.version){
 		pkg.version = `0.0.0`
 	}
