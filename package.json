@@ -19,7 +19,7 @@
     "help": "babel-node src --help",
     "run": "babel-node src run --file src-test/run.js",
     "serve": "babel-node src serve --dir dist-dev",
-    "test": "npm run build && babel-node src test",
+    "test": "npm run build && jest",
     "travis": "opn https://travis-ci.org/escaladesports/esca-scripts/branches"
   },
   "peerDependencies": {

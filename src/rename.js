@@ -34,6 +34,9 @@ async function renamePackage(options) {
 		pkg.name = options.name
 		recursiveReset(options, pkg)
 	}
+	if(pkg.version){
+		pkg.version = `0.0.0`
+	}
 	await outputJson(`package.json`, pkg, { spaces: 2 })
 }
 
