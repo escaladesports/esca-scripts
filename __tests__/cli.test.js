@@ -8,7 +8,7 @@ import Server from 'static-server'
 import { join } from 'path'
 import { version } from '../package.json'
 
-jest.setTimeout(60 * 1000)
+jest.setTimeout(30 * 1000)
 
 describe(`CLI help`, () => {
 	it(`Should return something`, async () => {
@@ -53,7 +53,10 @@ describe(`Bundle`, () => {
 			port: await getPort(),
 		})
 		server.start()
-		browser = await puppeteer.launch({ args: ['--no-sandbox'] })
+		browser = await puppeteer.launch({
+			headless: true,
+			args: ['--no-sandbox'],
+		})
 		let res = await exec(`babel-node dist bundle --src src-test/index.html --dist dist-bundle-test`)
 		expect(res.stderr).toEqual(``)
 	})

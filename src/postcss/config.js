@@ -2,9 +2,10 @@ function createConfig(options) {
 	console.log(`Building PostCSS config...`)
 	const config = {
 		plugins: {
+			'postcss-import': {},
+			'postcss-cssnext': {},
 			'postcss-nested': {},
 			'lost': {},
-			'css-mqpacker': {},
 		},
 	}
 	return config
