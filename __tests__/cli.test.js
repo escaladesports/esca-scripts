@@ -8,7 +8,7 @@ import Server from 'static-server'
 import { join } from 'path'
 import { version } from '../package.json'
 
-jest.setTimeout(30 * 1000)
+jest.setTimeout(60 * 1000)
 
 describe(`CLI help`, () => {
 	it(`Should return something`, async () => {
