@@ -9,12 +9,16 @@ async function buildBabel(options){
 	if (!options.dist) {
 		options.dist = await getDist(options.src)
 	}
+	let promises = []
 	if (!options[`no-config`]) {
-		await Promise.all([
-			remove(options.dist),
+		if(!options[`no-remove`]){
+			promises.push(remove(options.dist))
+		}
+		promises.push(
 			copyBabelConfig(options),
-			copyPostCSSConfig(options),
-		])
+			copyPostCSSConfig(options)
+		)
+		await Promise.all(promises)
 	}
 	await exec(`NODE_ENV=production babel ${options.src} --out-dir ${options.dist} --source-maps`)
 }

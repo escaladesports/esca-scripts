@@ -30,6 +30,10 @@ program.command(`build`, {
 	.option(`dist`, {
 		desc: `The distribution directory your project will compile to`,
 	})
+	.option(`no-remove`, {
+		desc: `Don't remove dist files before building`,
+		flag: true,
+	})
 	.option(`no-config`, {
 		desc: `Don't copy config files`,
 		flag: true,
