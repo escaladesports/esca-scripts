@@ -8,7 +8,10 @@ function createConfig() {
 			node: true
 		},
 		settings: {
-			'import/core-modules': ['styled-jsx', 'styled-jsx/css']
+			'import/core-modules': [
+				'styled-jsx',
+				'styled-jsx/css'
+			]
 		},
 		parserOptions: {
 			ecmaFeatures: {
@@ -18,8 +21,13 @@ function createConfig() {
 			sourceType: 'module'
 		},
 		plugins: [
-			'react'
+			'import',
+			'react',
+			'jsx-a11y',
 		],
+		globals: {
+			graphql: true,
+		},
 		rules: {
 			indent: [
 				'error',
@@ -36,7 +44,9 @@ function createConfig() {
 			semi: [
 				'error',
 				'never'
-			]
+			],
+			'react/jsx-uses-react': 'error',
+			'react/jsx-uses-vars': 'error'
 		}
 	}
 	return config
