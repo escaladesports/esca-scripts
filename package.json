@@ -1,6 +1,6 @@
 {
   "name": "esca-scripts",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "main": "dist/cli.js",
   "author": "Kennedy Rose <krose@escaladesports.com>",
   "repository": {
