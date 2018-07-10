@@ -13,6 +13,7 @@ import reset from './reset'
 import test from './tests'
 import babelConfig from './babel/copy-config'
 import postcssConfig from './postcss/copy-config'
+import eslintConfig from './eslint/copy-config'
 
 program.command(`version`, {
 		desc: `Display ${name} version`,
@@ -139,12 +140,17 @@ config.command('postcss', {
 	desc: `Copy PostCSS config`,
 	callback: postcssConfig,
 })
+config.command(`eslint`, {
+	desc: `Copy ESLint config`,
+	callback: eslintConfig,
+})
 config.command(`all`, {
 	desc: `Copy all configs`,
 	callback: async options => {
 		await Promise.all([
 			babelConfig(options),
 			postcssConfig(options),
+			eslintConfig(options),
 		])
 	}
 })
