@@ -2,4 +2,4 @@
 
 **DO NOT USE**
 
-Now part of [escalade-internal](https://github.com/escaladesports/escalade-internal/tree/master/packages/esca-scripts) monorepo.
+Now part of [escalade](https://github.com/escaladesports/escalade/tree/master/packages/esca-scripts) monorepo.
